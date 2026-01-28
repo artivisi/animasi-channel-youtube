@@ -7,10 +7,10 @@
   "private": true,
   "dependencies": {
     "@remotion/cli": "4.0.410",
+    "@remotion/tailwind-v4": "4.0.410",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "remotion": "4.0.410",
-    "@remotion/tailwind-v4": "4.0.410",
     "tailwindcss": "4.0.0"
   },
   "devDependencies": {
@@ -19,7 +19,8 @@
     "@types/web": "0.0.166",
     "eslint": "9.19.0",
     "prettier": "3.6.0",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "wav-encoder": "^1.3.0"
   },
   "scripts": {
     "dev": "remotion studio",

@@ -1,6 +1,7 @@
-import { AbsoluteFill, Img, interpolate, spring, useCurrentFrame, useVideoConfig, random } from "remotion";
+import { AbsoluteFill, Audio, Img, interpolate, spring, useCurrentFrame, useVideoConfig, random } from "remotion";
 import logoSrc from "../../assets/logos/logo-artivisi.svg";
 import { EspressoCup } from "./EspressoCup";
+import dialupModemSrc from "../../assets/audio/dialup-modem.wav";
 
 const TITLE = "NGOPI DULU";
 const TAGLINE = "Ngobrol Soal Teknologi";
@@ -66,6 +67,8 @@ export const VlogIntro: React.FC = () => {
 
   return (
     <AbsoluteFill className="bg-gradient-to-br from-sky-100 via-white to-pink-100 flex items-center justify-center overflow-hidden">
+      {/* Background audio */}
+      <Audio src={dialupModemSrc} volume={0.5} />
       {/* Colorful floating shapes */}
       <div
         className="absolute w-72 h-72 rounded-full bg-gradient-to-br from-cyan-300/40 to-blue-400/40 blur-3xl"
