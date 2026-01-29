@@ -78,24 +78,28 @@ flowchart TD
 
 ```
 src/
-├── animations/           # Standalone bumper animations
-│   ├── vlog-intro/      # "NGOPI DULU" intro bumper
-│   ├── lower-third/     # Name/title overlay
-│   ├── transition/      # "artivisi" letter animation
-│   └── outro/           # End screen
-├── components/          # Reusable tutorial components
+├── animations/                    # Standalone bumper animations
+│   ├── vlog-intro/               # "NGOPI DULU" intro bumper
+│   ├── lower-third/              # Name/title overlay
+│   ├── transition/               # "artivisi" letter animation
+│   ├── outro/                    # End screen
+│   └── programming-fundamentals/ # PF series intro/outro
+│       ├── PFIntro.tsx           # Dark theme, typing animation, language icons
+│       └── PFOutro.tsx           # Thank you, next episode preview, subscribe
+├── components/                   # Reusable tutorial components
 │   ├── VideoLowerThird.tsx
 │   ├── WebcamOverlay.tsx
 │   ├── ZoomPan.tsx
 │   ├── CodeHighlight.tsx
 │   ├── Subtitles.tsx
 │   └── Infographic.tsx
-├── tutorials/           # Tutorial video series
-│   ├── programming-fundamentals/
-│   ├── building-app-with-ai/
-│   └── networking-cloud/
+├── tutorials/                    # Tutorial video series
+│   └── programming-fundamentals/ # 31-episode series
+│       ├── SERIES_PLAN.md        # Full curriculum overview
+│       ├── pf-01.ts → pf-31.ts   # Episode outlines (VideoOutline type)
+│       └── types.ts              # TypeScript interfaces
 └── assets/
-    ├── audio/
+    ├── audio/                    # Sound effects (typing, swoosh, static, etc.)
     ├── icons/
     └── logos/
 ```
@@ -111,10 +115,15 @@ npm run build    # Bundle for rendering
 ## Render Bumpers
 
 ```bash
+# General bumpers
 npx remotion render VlogIntro out/vlog-intro.mp4
 npx remotion render LowerThird out/lower-third.mp4
 npx remotion render Transition out/transition.mp4
 npx remotion render Outro out/outro.mp4
+
+# Programming Fundamentals series
+npx remotion render PFIntro out/pf-intro.mp4
+npx remotion render PFOutro out/pf-outro.mp4
 ```
 
 ---
