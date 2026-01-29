@@ -258,18 +258,57 @@
 
 ---
 
-#### Episode 6: Data Types - Jenis-Jenis Data
-**Duration:** 30 min
+#### Episode 6: Data Types & Typing Systems
+**Duration:** 45 min
 
 **Outline:**
 - [00:00] Intro
 - [02:00] Kenapa perlu tipe data? (komputer perlu tahu cara handle)
-- [04:00] Tipe data dasar (primitive types)
+
+**Part 1: Typing Systems**
+- [04:00] Static vs Dynamic Typing
+  - Static: tipe dicek saat COMPILE (Java)
+  - Dynamic: tipe dicek saat RUNTIME (Python, JS)
+  - Analogi: static = cek KTP sebelum masuk, dynamic = cek di dalam
+  ```python
+  # Python (dynamic) - OK, tipe berubah
+  x = 10
+  x = "hello"  # tidak error
+  ```
+  ```java
+  // Java (static) - ERROR!
+  int x = 10;
+  x = "hello";  // compile error
+  ```
+- [10:00] Strong vs Weak Typing
+  - Strong: tidak otomatis konversi tipe (Python, Java)
+  - Weak: otomatis konversi tipe / coercion (JavaScript)
+  ```python
+  # Python (strong) - ERROR
+  "5" + 3  # TypeError!
+  ```
+  ```javascript
+  // JavaScript (weak) - coercion terjadi
+  "5" + 3   // "53" (string concatenation)
+  "5" - 3   // 2 (numeric subtraction) WTF!
+  ```
+- [16:00] Summary: Typing Matrix
+  |          | Strong | Weak |
+  |----------|--------|------|
+  | Static   | Java   | C    |
+  | Dynamic  | Python | JavaScript |
+  - Masing-masing ada tradeoff
+  - Java: strict, error cepat ketahuan
+  - Python: fleksibel tapi predictable
+  - JavaScript: sangat fleksibel tapi bisa surprising
+
+**Part 2: Data Types**
+- [20:00] Tipe data dasar (primitive types)
   - Integer (bilangan bulat)
   - Float/Double (bilangan desimal)
   - String (teks)
   - Boolean (true/false)
-- [08:00] Data types di Python
+- [23:00] Data types di Python
   ```python
   angka = 42          # int
   desimal = 3.14      # float
@@ -277,7 +316,7 @@
   benar = True        # bool
   print(type(angka))  # <class 'int'>
   ```
-- [14:00] Data types di JavaScript
+- [28:00] Data types di JavaScript
   ```javascript
   let angka = 42;           // number
   let desimal = 3.14;       // number (sama!)
@@ -286,7 +325,8 @@
   console.log(typeof angka); // "number"
   ```
   - JavaScript tidak bedakan int dan float
-- [20:00] Data types di Java
+  - null vs undefined
+- [33:00] Data types di Java
   ```java
   int angka = 42;
   double desimal = 3.14;
@@ -295,13 +335,38 @@
   // byte, short, long, float juga ada
   ```
   - Primitive vs Reference types
-- [26:00] Type conversion basics (preview)
-- [28:00] Challenge: Identifikasi tipe data
-- [29:00] Outro
+  - Wrapper classes (Integer, Double, etc.)
+
+**Part 3: Floating Point Precision**
+- [38:00] Floating Point Problem
+  ```python
+  print(0.1 + 0.2)  # 0.30000000000000004 !!!
+  ```
+  - Bukan bug, ini cara komputer simpan desimal
+  - Binary tidak bisa represent 0.1 exactly
+  - Seperti 1/3 = 0.333... di desimal
+  - Masalah di SEMUA bahasa
+- [41:00] Solusi: BigDecimal (Java) & Decimal (Python)
+  ```java
+  BigDecimal a = new BigDecimal("0.1");
+  BigDecimal b = new BigDecimal("0.2");
+  BigDecimal sum = a.add(b);  // 0.3 exactly!
+  ```
+  - Untuk aplikasi finansial: HARUS precise
+  - Python: decimal.Decimal module
+  - JavaScript: library decimal.js
+  - Tradeoff: lebih lambat, tapi accurate
+- [43:00] Challenge: Prediksi output (type coercion quiz)
+- [44:00] Outro
 
 **Infographics:**
+- Static vs Dynamic typing diagram
+- Strong vs Weak typing with examples
+- Typing matrix (2x2 grid)
 - Data types comparison table
-- Memory illustration for different types
+- JavaScript coercion quirks cheat sheet
+- Floating point visualization (binary representation)
+- BigDecimal usage cheat sheet
 
 ---
 
