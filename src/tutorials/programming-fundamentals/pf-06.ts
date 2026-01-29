@@ -181,4 +181,33 @@ public class Variables {
       hideAtFrame: 46800,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Tambahkan variables untuk menyimpan saldo dan transaksi",
+    starterCode: `# Finance Tracker App
+print("Welcome to Finance Tracker!")`,
+    newCode: `# Finance Tracker App
+print("Welcome to Finance Tracker!")
+
+# Variables untuk data keuangan
+saldo = 0
+pemasukan = 0
+pengeluaran = 0
+
+# Info user (untuk personalisasi)
+nama_user = "Budi"
+
+print(f"Halo, {nama_user}!")
+print(f"Saldo saat ini: Rp {saldo}")`,
+    explanation: [
+      "saldo, pemasukan, pengeluaran = integer untuk uang",
+      "nama_user = string untuk personalisasi",
+      "f-string untuk menampilkan variable dalam output",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan tentang variables. Minta user membuat variables dengan tipe yang tepat (int untuk angka, string untuk teks, boolean untuk status). Jangan beri jawaban.",
+  },
 };

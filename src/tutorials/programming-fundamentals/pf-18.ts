@@ -167,4 +167,60 @@ public class Greeter {
       hideAtFrame: 41400,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Tambah default parameters dan validasi di functions",
+    starterCode: `def tambah_transaksi(jenis, jumlah, keterangan=""):`,
+    newCode: `from decimal import Decimal
+
+transaksi = []
+
+def tambah_transaksi(jenis, jumlah, keterangan="Tidak ada keterangan"):
+    """
+    Tambah transaksi dengan validasi.
+
+    Args:
+        jenis: 'masuk' atau 'keluar'
+        jumlah: nominal transaksi (Decimal atau string/number)
+        keterangan: deskripsi transaksi (default: 'Tidak ada keterangan')
+
+    Returns:
+        True jika berhasil, False jika gagal
+    """
+    # Validasi jenis
+    if jenis not in ["masuk", "keluar"]:
+        print("Error: jenis harus 'masuk' atau 'keluar'")
+        return False
+
+    # Konversi dan validasi jumlah
+    try:
+        jumlah_decimal = Decimal(str(jumlah))
+        if jumlah_decimal <= 0:
+            print("Error: jumlah harus positif")
+            return False
+    except:
+        print("Error: jumlah tidak valid")
+        return False
+
+    transaksi.append({
+        "jenis": jenis,
+        "jumlah": jumlah_decimal,
+        "keterangan": keterangan
+    })
+    return True
+
+# Penggunaan dengan named arguments
+tambah_transaksi("masuk", 5000000, keterangan="Gaji bulanan")
+tambah_transaksi(jenis="keluar", jumlah=500000)  # pakai default keterangan`,
+    explanation: [
+      "Default parameter untuk keterangan",
+      "Docstring untuk dokumentasi function",
+      "Validasi input dengan return False jika error",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan parameters. Minta user membuat function dengan default values dan named arguments. Jangan beri jawaban.",
+  },
 };

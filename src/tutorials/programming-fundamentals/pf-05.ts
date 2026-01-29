@@ -179,4 +179,28 @@ function greet(name) {
       hideAtFrame: 23400,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Tambahkan komentar untuk menjelaskan struktur Finance Tracker",
+    starterCode: `print("Welcome to Finance Tracker!")`,
+    newCode: `# Finance Tracker App
+# Aplikasi sederhana untuk mencatat pemasukan dan pengeluaran
+# Dibuat untuk belajar programming fundamentals
+
+print("Welcome to Finance Tracker!")
+# TODO: Akan ditambahkan fitur-fitur berikut:
+# - Input pemasukan
+# - Input pengeluaran
+# - Hitung saldo`,
+    explanation: [
+      "Komentar menjelaskan tujuan aplikasi",
+      "TODO comments untuk planning fitur",
+      "Struktur yang jelas memudahkan development",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan tentang komentar di Python, JavaScript, dan Java. Minta user menulis komentar yang menjelaskan 'kenapa' bukan 'apa'. Jangan beri jawaban.",
+  },
 };

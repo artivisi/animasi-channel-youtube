@@ -177,4 +177,57 @@ for (let j = 0; j < 3; j++) {}
       hideAtFrame: 37800,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Function dengan return multiple values: laporan keuangan",
+    starterCode: `def hitung_saldo():
+    return saldo`,
+    newCode: `from decimal import Decimal
+
+transaksi = [
+    {"jenis": "masuk", "jumlah": Decimal("5000000"), "keterangan": "Gaji"},
+    {"jenis": "keluar", "jumlah": Decimal("500000"), "keterangan": "Makan"},
+    {"jenis": "keluar", "jumlah": Decimal("300000"), "keterangan": "Transport"},
+]
+
+def buat_laporan():
+    """
+    Buat laporan keuangan lengkap.
+
+    Returns:
+        tuple: (total_masuk, total_keluar, saldo, jumlah_transaksi)
+    """
+    total_masuk = Decimal("0")
+    total_keluar = Decimal("0")
+
+    for trx in transaksi:
+        if trx["jenis"] == "masuk":
+            total_masuk += trx["jumlah"]
+        else:
+            total_keluar += trx["jumlah"]
+
+    saldo = total_masuk - total_keluar
+    jumlah_transaksi = len(transaksi)
+
+    return total_masuk, total_keluar, saldo, jumlah_transaksi
+
+# Unpack return values
+masuk, keluar, saldo, jml = buat_laporan()
+
+print("=== Laporan Keuangan ===")
+print(f"Total Pemasukan:   Rp {masuk:>12,.2f}")
+print(f"Total Pengeluaran: Rp {keluar:>12,.2f}")
+print(f"Saldo:             Rp {saldo:>12,.2f}")
+print(f"Jumlah Transaksi:  {jml}")`,
+    explanation: [
+      "Return tuple untuk multiple values",
+      "Unpack tuple ke beberapa variable",
+      "Local variables tidak pollute global scope",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan scope dan return. Minta user membuat function dengan local variables dan return multiple values. Jangan beri jawaban.",
+  },
 };

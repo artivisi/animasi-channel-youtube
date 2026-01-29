@@ -183,4 +183,55 @@ while (true) {
       hideAtFrame: 52200,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Input transaksi berulang sampai user ketik 'selesai'",
+    starterCode: `transaksi = []`,
+    newCode: `from decimal import Decimal
+
+transaksi = []
+saldo = Decimal("0")
+
+print("=== Finance Tracker ===")
+print("Ketik 'selesai' untuk berhenti")
+print()
+
+while True:
+    # Input jenis transaksi
+    jenis = input("Jenis (masuk/keluar/selesai): ").lower()
+
+    if jenis == "selesai":
+        break  # Keluar dari loop
+
+    if jenis not in ["masuk", "keluar"]:
+        print("Jenis tidak valid! Gunakan 'masuk' atau 'keluar'")
+        continue  # Skip ke iterasi berikutnya
+
+    # Input jumlah
+    jumlah_str = input("Jumlah: Rp ")
+    try:
+        jumlah = Decimal(jumlah_str)
+        if jumlah <= 0:
+            print("Jumlah harus positif!")
+            continue
+    except:
+        print("Jumlah tidak valid!")
+        continue
+
+    # Simpan transaksi
+    transaksi.append({"jenis": jenis, "jumlah": jumlah})
+    print(f"Transaksi {jenis} Rp {jumlah:,.2f} tersimpan\\n")
+
+print(f"\\nTotal {len(transaksi)} transaksi tersimpan.")`,
+    explanation: [
+      "while True untuk input berulang tanpa batas",
+      "break untuk keluar saat user ketik 'selesai'",
+      "continue untuk skip input invalid",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan while loop dengan break dan continue. Minta user membuat loop yang berhenti berdasarkan kondisi. Jangan beri jawaban.",
+  },
 };

@@ -164,4 +164,60 @@ console.log(fruits.slice(1, 3));  // index 1 dan 2`,
       hideAtFrame: 48600,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Operasi pada daftar transaksi: tambah, hapus, cari, sort",
+    starterCode: `transaksi = [...]  # list of transaction dicts`,
+    newCode: `from decimal import Decimal
+from datetime import date
+
+transaksi = [
+    {"tanggal": "2024-01-15", "jenis": "masuk", "jumlah": Decimal("5000000"), "ket": "Gaji"},
+    {"tanggal": "2024-01-16", "jenis": "keluar", "jumlah": Decimal("500000"), "ket": "Makan"},
+    {"tanggal": "2024-01-17", "jenis": "keluar", "jumlah": Decimal("300000"), "ket": "Transport"},
+]
+
+def tambah_transaksi(tanggal, jenis, jumlah, ket=""):
+    transaksi.append({
+        "tanggal": tanggal,
+        "jenis": jenis,
+        "jumlah": Decimal(str(jumlah)),
+        "ket": ket
+    })
+
+def hapus_transaksi(index):
+    if 0 <= index < len(transaksi):
+        removed = transaksi.pop(index)
+        print(f"Dihapus: {removed['ket']}")
+        return True
+    return False
+
+def cari_transaksi(keyword):
+    hasil = []
+    for trx in transaksi:
+        if keyword.lower() in trx["ket"].lower():
+            hasil.append(trx)
+    return hasil
+
+def sort_by_tanggal():
+    transaksi.sort(key=lambda x: x["tanggal"])
+
+def sort_by_jumlah(descending=True):
+    transaksi.sort(key=lambda x: x["jumlah"], reverse=descending)
+
+# Contoh penggunaan
+tambah_transaksi("2024-01-18", "masuk", 200000, "Bonus")
+hasil = cari_transaksi("makan")
+sort_by_jumlah()`,
+    explanation: [
+      "append() untuk tambah transaksi baru",
+      "pop() dengan index untuk hapus",
+      "sort() dengan key function untuk custom sorting",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan array operations. Minta user menggunakan append, remove, find, dan sort. Jangan beri jawaban.",
+  },
 };

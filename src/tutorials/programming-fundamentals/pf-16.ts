@@ -180,4 +180,50 @@ print(evens)  # [2, 4, 6]`,
       hideAtFrame: 46800,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Hitung total pemasukan, pengeluaran, dan filter transaksi",
+    starterCode: `transaksi = [...]  # list of transactions`,
+    newCode: `from decimal import Decimal
+
+transaksi = [
+    {"jenis": "masuk", "jumlah": Decimal("5000000"), "keterangan": "Gaji"},
+    {"jenis": "keluar", "jumlah": Decimal("500000"), "keterangan": "Makan"},
+    {"jenis": "keluar", "jumlah": Decimal("300000"), "keterangan": "Transport"},
+    {"jenis": "masuk", "jumlah": Decimal("200000"), "keterangan": "Bonus"},
+]
+
+# Accumulator pattern: hitung total
+total_masuk = Decimal("0")
+total_keluar = Decimal("0")
+
+for trx in transaksi:
+    if trx["jenis"] == "masuk":
+        total_masuk += trx["jumlah"]
+    else:
+        total_keluar += trx["jumlah"]
+
+saldo = total_masuk - total_keluar
+
+# Filter pattern: ambil pengeluaran saja
+pengeluaran = []
+for trx in transaksi:
+    if trx["jenis"] == "keluar":
+        pengeluaran.append(trx)
+
+print(f"Total Pemasukan:   Rp {total_masuk:>12,.2f}")
+print(f"Total Pengeluaran: Rp {total_keluar:>12,.2f}")
+print(f"Saldo:             Rp {saldo:>12,.2f}")
+print(f"\\nJumlah transaksi keluar: {len(pengeluaran)}")`,
+    explanation: [
+      "Accumulator pattern untuk sum transaksi",
+      "Filter pattern untuk memisahkan jenis transaksi",
+      "Kombinasi pattern untuk laporan keuangan",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan nested loops dan patterns. Minta user menggunakan accumulator, search, dan filter patterns. Jangan beri jawaban.",
+  },
 };

@@ -170,4 +170,49 @@ locations = {
       hideAtFrame: 48600,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Gunakan set untuk daftar kategori unik",
+    starterCode: `per_kategori = {}  # dictionary untuk aggregate`,
+    newCode: `from decimal import Decimal
+
+transaksi = [
+    {"jenis": "keluar", "jumlah": Decimal("500000"), "kategori": "Makan"},
+    {"jenis": "keluar", "jumlah": Decimal("300000"), "kategori": "Transport"},
+    {"jenis": "keluar", "jumlah": Decimal("200000"), "kategori": "Makan"},
+    {"jenis": "keluar", "jumlah": Decimal("150000"), "kategori": "Transport"},
+    {"jenis": "keluar", "jumlah": Decimal("100000"), "kategori": "Hiburan"},
+]
+
+def get_kategori_unik():
+    """Ambil daftar kategori unik menggunakan set"""
+    kategori_set = set()
+    for trx in transaksi:
+        kategori_set.add(trx["kategori"])
+    return kategori_set
+
+# Atau dengan set comprehension
+kategori = {trx["kategori"] for trx in transaksi}
+print(f"Kategori tersedia: {kategori}")
+# Output: {'Makan', 'Transport', 'Hiburan'}
+
+# Cek apakah kategori valid
+def is_kategori_valid(kategori_input):
+    kategori_valid = get_kategori_unik()
+    return kategori_input in kategori_valid
+
+# O(1) lookup - sangat cepat!
+print(is_kategori_valid("Makan"))     # True
+print(is_kategori_valid("Shopping"))  # False`,
+    explanation: [
+      "Set untuk menyimpan kategori unik tanpa duplikat",
+      "Fast lookup O(1) untuk validasi kategori",
+      "Set comprehension untuk kode yang lebih ringkas",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan sets dan tuples. Minta user menggunakan set untuk remove duplicates dan tuple untuk fixed data. Jangan beri jawaban.",
+  },
 };

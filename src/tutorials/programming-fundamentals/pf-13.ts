@@ -167,4 +167,57 @@ console.log(dayName);  // "Rabu"`,
       hideAtFrame: 39600,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Kategorisasi transaksi: pemasukan, pengeluaran, atau transfer",
+    starterCode: `if saldo >= pengeluaran:
+    saldo -= pengeluaran`,
+    newCode: `from decimal import Decimal
+
+saldo = Decimal("1000000")
+
+# Menu transaksi dengan else-if
+print("Pilih jenis transaksi:")
+print("1. Pemasukan")
+print("2. Pengeluaran")
+print("3. Transfer")
+
+pilihan = "2"  # Simulasi input user
+jumlah = Decimal("500000")
+
+if pilihan == "1":
+    # Pemasukan
+    saldo += jumlah
+    print(f"Pemasukan Rp {jumlah:,.2f} berhasil")
+elif pilihan == "2":
+    # Pengeluaran - perlu cek saldo
+    if saldo >= jumlah:
+        saldo -= jumlah
+        print(f"Pengeluaran Rp {jumlah:,.2f} berhasil")
+    else:
+        print("Saldo tidak cukup!")
+elif pilihan == "3":
+    # Transfer - perlu cek saldo + biaya admin
+    biaya_admin = Decimal("2500")
+    total = jumlah + biaya_admin
+    if saldo >= total:
+        saldo -= total
+        print(f"Transfer Rp {jumlah:,.2f} + admin Rp {biaya_admin:,.2f}")
+    else:
+        print("Saldo tidak cukup untuk transfer + biaya admin")
+else:
+    print("Pilihan tidak valid!")
+
+print(f"Saldo akhir: Rp {saldo:,.2f}")`,
+    explanation: [
+      "elif untuk multiple choice menu",
+      "Nested if untuk validasi dalam setiap pilihan",
+      "else untuk handle pilihan invalid",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan else-if dan nested conditions. Minta user membuat program dengan multiple conditions seperti grade converter atau menu selection. Jangan beri jawaban.",
+  },
 };

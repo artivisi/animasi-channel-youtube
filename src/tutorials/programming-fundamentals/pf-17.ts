@@ -194,4 +194,54 @@ public class Functions {
       hideAtFrame: 43200,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Refactor ke functions: tambah_transaksi(), hitung_saldo()",
+    starterCode: `# Kode sebelumnya masih procedural (tidak ada function)`,
+    newCode: `from decimal import Decimal
+
+# Data global (nanti akan diperbaiki dengan OOP)
+transaksi = []
+
+def tambah_transaksi(jenis, jumlah, keterangan=""):
+    """Tambah transaksi baru ke daftar"""
+    transaksi.append({
+        "jenis": jenis,
+        "jumlah": Decimal(str(jumlah)),
+        "keterangan": keterangan
+    })
+    return True
+
+def hitung_saldo():
+    """Hitung saldo dari semua transaksi"""
+    saldo = Decimal("0")
+    for trx in transaksi:
+        if trx["jenis"] == "masuk":
+            saldo += trx["jumlah"]
+        else:
+            saldo -= trx["jumlah"]
+    return saldo
+
+def tampilkan_transaksi():
+    """Tampilkan semua transaksi"""
+    for i, trx in enumerate(transaksi, 1):
+        jenis = "+" if trx["jenis"] == "masuk" else "-"
+        print(f"{i}. {jenis} Rp {trx['jumlah']:>12,.2f} - {trx['keterangan']}")
+
+# Penggunaan
+tambah_transaksi("masuk", 5000000, "Gaji")
+tambah_transaksi("keluar", 500000, "Makan")
+tampilkan_transaksi()
+print(f"Saldo: Rp {hitung_saldo():,.2f}")`,
+    explanation: [
+      "Kode lebih terorganisir dengan functions",
+      "Setiap function punya satu tanggung jawab",
+      "Mudah di-test dan di-maintain",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan functions. Minta user membuat function sederhana dengan parameter dan return value. Jangan beri jawaban.",
+  },
 };

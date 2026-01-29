@@ -166,4 +166,30 @@ export const pf04: VideoOutline = {
       hideAtFrame: 32400,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Print welcome message untuk Finance Tracker app",
+    newCode: `# Python
+print("Welcome to Finance Tracker!")
+
+// JavaScript
+console.log("Welcome to Finance Tracker!");
+
+// Java
+public class FinanceTracker {
+    public static void main(String[] args) {
+        System.out.println("Welcome to Finance Tracker!");
+    }
+}`,
+    explanation: [
+      "Ini adalah starting point dari aplikasi Finance Tracker",
+      "Setiap program dimulai dengan output sederhana",
+      "Kita akan tambahkan fitur di setiap episode",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan tentang print statement. Minta user untuk print berbagai pesan dengan variasi tanda kutip single dan double. Jangan beri jawaban.",
+  },
 };

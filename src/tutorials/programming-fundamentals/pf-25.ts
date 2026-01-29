@@ -193,4 +193,67 @@ if (emailPattern.test(email)) {
       url: "regex101.com",
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Validasi format input dengan regex",
+    starterCode: `def parse_transaksi_input(input_str):`,
+    newCode: `from decimal import Decimal
+import re
+
+def validate_tanggal(tanggal_str):
+    """Validate format tanggal YYYY-MM-DD"""
+    pattern = r"^\\d{4}-\\d{2}-\\d{2}$"
+    return bool(re.match(pattern, tanggal_str))
+
+def validate_jumlah(jumlah_str):
+    """Validate format jumlah (angka dengan optional comma/dot)"""
+    # Match: 1000 atau 1,000 atau 1.000 atau 1,000,000
+    pattern = r"^[\\d,\\.]+$"
+    return bool(re.match(pattern, jumlah_str))
+
+def extract_angka(jumlah_str):
+    """Extract only digits from string"""
+    return re.sub(r"[^\\d]", "", jumlah_str)
+
+def parse_transaksi(input_str):
+    """
+    Parse dengan validasi regex.
+    Format: "YYYY-MM-DD;jenis;jumlah;keterangan"
+    """
+    parts = input_str.strip().split(";")
+    if len(parts) < 3:
+        return None
+
+    tanggal, jenis, jumlah_str = parts[0], parts[1], parts[2]
+    keterangan = parts[3] if len(parts) > 3 else ""
+
+    # Validasi dengan regex
+    if not validate_tanggal(tanggal):
+        print("Format tanggal tidak valid (gunakan YYYY-MM-DD)")
+        return None
+
+    if not validate_jumlah(jumlah_str):
+        print("Format jumlah tidak valid")
+        return None
+
+    # Extract dan convert
+    jumlah = Decimal(extract_angka(jumlah_str))
+
+    return {
+        "tanggal": tanggal,
+        "jenis": jenis.strip().lower(),
+        "jumlah": jumlah,
+        "keterangan": keterangan.strip()
+    }`,
+    explanation: [
+      "Regex untuk validasi format tanggal YYYY-MM-DD",
+      "re.sub() untuk extract hanya angka",
+      "Validasi sebelum processing mencegah error",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan regex. Minta user membuat pattern untuk validate email, phone number, dan extract data. Jangan beri jawaban.",
+  },
 };

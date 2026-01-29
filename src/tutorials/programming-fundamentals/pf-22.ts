@@ -167,4 +167,55 @@ for (let [key, value] of Object.entries(person)) {
       hideAtFrame: 32400,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Statistik per kategori menggunakan dictionary",
+    starterCode: `transaksi = [...]  # list of transactions`,
+    newCode: `from decimal import Decimal
+
+transaksi = [
+    {"jenis": "keluar", "jumlah": Decimal("500000"), "kategori": "Makan"},
+    {"jenis": "keluar", "jumlah": Decimal("300000"), "kategori": "Transport"},
+    {"jenis": "keluar", "jumlah": Decimal("200000"), "kategori": "Makan"},
+    {"jenis": "keluar", "jumlah": Decimal("150000"), "kategori": "Transport"},
+    {"jenis": "keluar", "jumlah": Decimal("100000"), "kategori": "Hiburan"},
+]
+
+def hitung_per_kategori():
+    """Hitung total pengeluaran per kategori"""
+    per_kategori = {}  # dictionary untuk menyimpan total
+
+    for trx in transaksi:
+        if trx["jenis"] == "keluar":
+            kategori = trx["kategori"]
+            jumlah = trx["jumlah"]
+
+            # Jika kategori belum ada, inisialisasi dengan 0
+            if kategori not in per_kategori:
+                per_kategori[kategori] = Decimal("0")
+
+            per_kategori[kategori] += jumlah
+
+    return per_kategori
+
+# Tampilkan laporan
+laporan = hitung_per_kategori()
+print("=== Pengeluaran per Kategori ===")
+for kategori, total in laporan.items():
+    print(f"{kategori:15} : Rp {total:>12,.2f}")
+
+# Cari kategori terbesar
+kategori_terbesar = max(laporan, key=laporan.get)
+print(f"\\nKategori terbesar: {kategori_terbesar}")`,
+    explanation: [
+      "Dictionary untuk aggregate data per kategori",
+      "Key = nama kategori, Value = total jumlah",
+      ".items() untuk iterate key-value pairs",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan dictionary/object. Minta user membuat dictionary, mengakses, dan mengiterasinya. Jangan beri jawaban.",
+  },
 };

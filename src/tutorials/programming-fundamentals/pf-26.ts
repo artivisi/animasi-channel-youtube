@@ -178,4 +178,67 @@ function validateAge(age) {
       hideAtFrame: 45000,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Error handling untuk semua operasi Finance Tracker",
+    starterCode: `def tambah_transaksi(jenis, jumlah, keterangan=""):`,
+    newCode: `from decimal import Decimal, InvalidOperation
+
+class FinanceTrackerError(Exception):
+    """Custom exception untuk Finance Tracker"""
+    pass
+
+class InvalidTransactionError(FinanceTrackerError):
+    """Error untuk transaksi tidak valid"""
+    pass
+
+class InsufficientBalanceError(FinanceTrackerError):
+    """Error untuk saldo tidak cukup"""
+    pass
+
+def tambah_transaksi(jenis, jumlah, keterangan=""):
+    """Tambah transaksi dengan proper error handling"""
+    try:
+        # Validasi jenis
+        if jenis not in ["masuk", "keluar"]:
+            raise InvalidTransactionError(f"Jenis '{jenis}' tidak valid")
+
+        # Konversi jumlah
+        jumlah_decimal = Decimal(str(jumlah))
+
+        if jumlah_decimal <= 0:
+            raise InvalidTransactionError("Jumlah harus positif")
+
+        # Proses transaksi...
+        return True
+
+    except InvalidOperation:
+        raise InvalidTransactionError("Format jumlah tidak valid")
+
+def proses_pengeluaran(jumlah, saldo):
+    """Proses pengeluaran dengan cek saldo"""
+    if jumlah > saldo:
+        raise InsufficientBalanceError(
+            f"Saldo tidak cukup. Saldo: {saldo}, Dibutuhkan: {jumlah}"
+        )
+    return saldo - jumlah
+
+# Penggunaan dengan try-except
+try:
+    tambah_transaksi("keluar", "abc123")  # Invalid
+except InvalidTransactionError as e:
+    print(f"Error: {e}")
+except Exception as e:
+    print(f"Unexpected error: {e}")`,
+    explanation: [
+      "Custom exception classes untuk error yang spesifik",
+      "try-except untuk handle berbagai jenis error",
+      "Error messages yang informatif untuk debugging",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan try-except. Minta user handle berbagai jenis exception seperti ValueError, ZeroDivisionError, dan custom exceptions. Jangan beri jawaban.",
+  },
 };

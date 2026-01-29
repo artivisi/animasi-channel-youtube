@@ -169,4 +169,74 @@ console.log(loaded.nama);  // "Budi"`,
       hideAtFrame: 39600,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Save dan load data transaksi ke/dari file JSON",
+    starterCode: `transaksi = []  # data hilang saat program selesai`,
+    newCode: `from decimal import Decimal
+import json
+import os
+
+DATA_FILE = "finance_data.json"
+
+def decimal_encoder(obj):
+    """Custom encoder untuk Decimal"""
+    if isinstance(obj, Decimal):
+        return str(obj)
+    raise TypeError(f"Object of type {type(obj)} is not JSON serializable")
+
+def save_data(transaksi):
+    """Simpan transaksi ke file JSON"""
+    try:
+        with open(DATA_FILE, "w") as f:
+            json.dump(transaksi, f, indent=2, default=decimal_encoder)
+        print(f"Data tersimpan ke {DATA_FILE}")
+        return True
+    except IOError as e:
+        print(f"Error menyimpan data: {e}")
+        return False
+
+def load_data():
+    """Load transaksi dari file JSON"""
+    if not os.path.exists(DATA_FILE):
+        print("File data tidak ditemukan, mulai dengan data kosong")
+        return []
+
+    try:
+        with open(DATA_FILE, "r") as f:
+            data = json.load(f)
+
+        # Convert jumlah string ke Decimal
+        for trx in data:
+            trx["jumlah"] = Decimal(trx["jumlah"])
+
+        print(f"Loaded {len(data)} transaksi dari {DATA_FILE}")
+        return data
+
+    except json.JSONDecodeError as e:
+        print(f"Error parsing JSON: {e}")
+        return []
+    except IOError as e:
+        print(f"Error membaca file: {e}")
+        return []
+
+# Main program
+transaksi = load_data()
+
+# ... operasi transaksi ...
+
+# Save sebelum keluar
+save_data(transaksi)`,
+    explanation: [
+      "JSON untuk menyimpan data ke file",
+      "Custom encoder untuk handle Decimal",
+      "Error handling untuk file operations",
+      "Auto-load saat start, save saat exit",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan File I/O. Minta user membaca, menulis, dan memproses file text dan JSON. Jangan beri jawaban.",
+  },
 };

@@ -157,4 +157,44 @@ fruits.forEach((fruit, index) => {
       hideAtFrame: 34200,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Tampilkan daftar transaksi dengan loop",
+    starterCode: `saldo = Decimal("1000000")`,
+    newCode: `from decimal import Decimal
+
+# Daftar transaksi (list of dictionaries)
+transaksi = [
+    {"jenis": "masuk", "jumlah": Decimal("5000000"), "keterangan": "Gaji"},
+    {"jenis": "keluar", "jumlah": Decimal("500000"), "keterangan": "Makan"},
+    {"jenis": "keluar", "jumlah": Decimal("300000"), "keterangan": "Transport"},
+    {"jenis": "masuk", "jumlah": Decimal("200000"), "keterangan": "Bonus"},
+]
+
+# Tampilkan semua transaksi dengan for loop
+print("=== Daftar Transaksi ===")
+for i, trx in enumerate(transaksi, 1):
+    jenis = "+" if trx["jenis"] == "masuk" else "-"
+    print(f"{i}. {jenis} Rp {trx['jumlah']:>12,.2f} - {trx['keterangan']}")
+
+# Hitung saldo akhir
+saldo = Decimal("0")
+for trx in transaksi:
+    if trx["jenis"] == "masuk":
+        saldo += trx["jumlah"]
+    else:
+        saldo -= trx["jumlah"]
+
+print(f"\\nSaldo: Rp {saldo:,.2f}")`,
+    explanation: [
+      "List untuk menyimpan multiple transaksi",
+      "for loop untuk iterate setiap transaksi",
+      "enumerate() untuk mendapat nomor urut",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan for loop. Minta user mengiterasi list, range, dan string. Termasuk soal dengan enumerate(). Jangan beri jawaban.",
+  },
 };

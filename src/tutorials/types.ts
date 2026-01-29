@@ -32,6 +32,19 @@ export type CodeCue = {
   hideAtFrame?: number;
 };
 
+export type CaseStudySection = {
+  title: string; // "Finance Tracker"
+  episodeGoal: string; // What we're adding this episode
+  starterCode?: string; // Code from previous episode (reference)
+  newCode: string; // Code to add this episode
+  explanation: string[]; // Key points about what's new
+};
+
+export type AIPrompt = {
+  exercisePrompt: string; // Prompt to generate practice exercises
+  reviewPrompt?: string; // Prompt for code review
+};
+
 export type VideoOutline = {
   episodeId: string;
   seriesId: string;
@@ -54,6 +67,12 @@ export type VideoOutline = {
     url: string;
     showAtFrame?: number;
   }[];
+
+  // Incremental case study (Finance Tracker)
+  caseStudy?: CaseStudySection;
+
+  // AI prompts for homework
+  aipiPrompts?: AIPrompt;
 };
 
 export type OutlineSection = {

@@ -165,4 +165,43 @@ i--;      // i = 0
       hideAtFrame: 43200,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Implementasi operasi dasar: tambah pemasukan, kurang pengeluaran",
+    starterCode: `saldo = Decimal("0.00")
+pemasukan = Decimal("500000")
+pengeluaran = Decimal("150000")`,
+    newCode: `from decimal import Decimal
+
+saldo = Decimal("0.00")
+total_pemasukan = Decimal("0.00")
+total_pengeluaran = Decimal("0.00")
+
+# Tambah pemasukan
+gaji = Decimal("5000000")
+total_pemasukan += gaji  # shorthand: total_pemasukan = total_pemasukan + gaji
+saldo += gaji
+
+# Kurang pengeluaran
+makan = Decimal("500000")
+transport = Decimal("300000")
+total_pengeluaran += makan
+total_pengeluaran += transport
+saldo -= makan
+saldo -= transport
+
+print(f"Total Pemasukan:   Rp {total_pemasukan:>15,.2f}")
+print(f"Total Pengeluaran: Rp {total_pengeluaran:>15,.2f}")
+print(f"Saldo:             Rp {saldo:>15,.2f}")`,
+    explanation: [
+      "+= dan -= untuk update saldo secara singkat",
+      "Track total_pemasukan dan total_pengeluaran terpisah",
+      "Format {:>15,.2f} untuk alignment dan thousand separator",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan arithmetic operators. Minta user menghitung dengan modulo, division, dan shorthand operators. Jangan beri jawaban.",
+  },
 };

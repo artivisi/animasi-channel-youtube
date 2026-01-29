@@ -175,4 +175,66 @@ console.log(text.includes("World"));  // true`,
       hideAtFrame: 48600,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Format dan parsing input transaksi dengan string methods",
+    starterCode: `input_user = "..."  # raw input from user`,
+    newCode: `from decimal import Decimal
+
+def parse_transaksi_input(input_str):
+    """
+    Parse input format: "jenis;jumlah;keterangan"
+    Contoh: "masuk;5000000;Gaji bulanan"
+    """
+    # Strip whitespace
+    input_str = input_str.strip()
+
+    # Split by semicolon
+    parts = input_str.split(";")
+
+    if len(parts) < 2:
+        return None
+
+    jenis = parts[0].strip().lower()
+    jumlah_str = parts[1].strip().replace(",", "").replace(".", "")
+    keterangan = parts[2].strip() if len(parts) > 2 else ""
+
+    # Validate jenis
+    if jenis not in ["masuk", "keluar"]:
+        return None
+
+    # Parse jumlah
+    try:
+        jumlah = Decimal(jumlah_str)
+    except:
+        return None
+
+    return {
+        "jenis": jenis,
+        "jumlah": jumlah,
+        "keterangan": keterangan
+    }
+
+def format_transaksi(trx):
+    """Format transaksi untuk display"""
+    jenis_symbol = "+" if trx["jenis"] == "masuk" else "-"
+    return f"{jenis_symbol} Rp {trx['jumlah']:>12,.2f} | {trx['keterangan']}"
+
+# Contoh penggunaan
+input_user = "  masuk ; 5,000,000 ; Gaji bulanan  "
+trx = parse_transaksi_input(input_user)
+if trx:
+    print(format_transaksi(trx))
+# Output: "+ Rp 5,000,000.00 | Gaji bulanan"`,
+    explanation: [
+      "strip() untuk hapus whitespace dari input",
+      "split() untuk parse format input terstruktur",
+      "replace() untuk normalisasi format angka",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan string methods. Minta user menggunakan split, join, strip, dan replace untuk memproses text. Jangan beri jawaban.",
+  },
 };

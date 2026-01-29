@@ -164,4 +164,42 @@ System.out.println(fruitList.size());  // 4`,
       hideAtFrame: 45000,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Struktur data transaksi menggunakan list of dictionaries",
+    starterCode: `transaksi = []  # list kosong`,
+    newCode: `from decimal import Decimal
+
+# List of dictionaries untuk menyimpan transaksi
+transaksi = []
+
+def tambah_transaksi(jenis, jumlah, keterangan=""):
+    transaksi.append({
+        "jenis": jenis,
+        "jumlah": Decimal(str(jumlah)),
+        "keterangan": keterangan
+    })
+
+# Akses dengan index
+tambah_transaksi("masuk", 5000000, "Gaji")
+tambah_transaksi("keluar", 500000, "Makan")
+
+print(f"Transaksi pertama: {transaksi[0]}")
+print(f"Transaksi terakhir: {transaksi[-1]}")  # Python negative indexing
+print(f"Total transaksi: {len(transaksi)}")
+
+# Akses field dari dictionary dalam list
+for i, trx in enumerate(transaksi):
+    print(f"{i}. {trx['jenis']}: Rp {trx['jumlah']:,.2f}")`,
+    explanation: [
+      "List untuk menyimpan banyak transaksi",
+      "Setiap transaksi adalah dictionary dengan fields",
+      "Index untuk akses transaksi tertentu",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan array/list. Minta user membuat list, mengakses dengan index, dan menggunakan negative indexing. Jangan beri jawaban.",
+  },
 };

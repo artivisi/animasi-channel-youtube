@@ -157,4 +157,39 @@ let pesan = \`Halo \${nama}, umur \${umurInt} tahun\`;`,
       hideAtFrame: 28800,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Konversi input user (string) ke Decimal untuk perhitungan keuangan",
+    starterCode: `saldo = Decimal("0.00")
+nama_user = "Budi"`,
+    newCode: `from decimal import Decimal
+
+saldo = Decimal("0.00")
+nama_user = "Budi"
+
+# Simulasi input dari user (selalu string)
+input_pemasukan = "500000"
+input_pengeluaran = "150000"
+
+# Konversi ke Decimal untuk kalkulasi
+pemasukan = Decimal(input_pemasukan)
+pengeluaran = Decimal(input_pengeluaran)
+
+# Update saldo
+saldo = saldo + pemasukan - pengeluaran
+
+# Konversi ke string untuk output
+print(f"Halo, {nama_user}!")
+print(f"Saldo saat ini: Rp {saldo:,.2f}")`,
+    explanation: [
+      "Input dari user selalu berupa string",
+      "Harus konversi ke Decimal sebelum kalkulasi",
+      "f-string dengan format :,.2f untuk tampilan currency",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan type conversion. Minta user mengkonversi string ke number dan sebaliknya, termasuk handling error untuk input invalid. Jangan beri jawaban.",
+  },
 };

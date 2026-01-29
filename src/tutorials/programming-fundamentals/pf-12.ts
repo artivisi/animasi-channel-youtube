@@ -162,4 +162,35 @@ if (umur >= 17 && punyaKtp) {
       hideAtFrame: 32400,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Cek saldo sebelum transaksi pengeluaran",
+    starterCode: `saldo = Decimal("1000000")
+pengeluaran = Decimal("500000")`,
+    newCode: `from decimal import Decimal
+
+saldo = Decimal("1000000")
+
+# Cek saldo sebelum pengeluaran
+pengeluaran = Decimal("1500000")
+
+if saldo >= pengeluaran:
+    saldo -= pengeluaran
+    print(f"Transaksi berhasil!")
+    print(f"Saldo tersisa: Rp {saldo:,.2f}")
+else:
+    kekurangan = pengeluaran - saldo
+    print(f"Saldo tidak cukup!")
+    print(f"Kekurangan: Rp {kekurangan:,.2f}")`,
+    explanation: [
+      "if-else untuk cek saldo sebelum transaksi",
+      "Mencegah saldo negatif",
+      "Memberikan feedback yang informatif ke user",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan if-else. Minta user membuat program dengan kondisi sederhana seperti cek genap/ganjil, positif/negatif, lulus/tidak lulus. Jangan beri jawaban.",
+  },
 };

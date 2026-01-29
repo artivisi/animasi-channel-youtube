@@ -292,4 +292,33 @@ print(f"RGB: ({r}, {g}, {b})")`,
       url: "en.wikipedia.org/wiki/File-system_permissions#Numeric_notation",
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Memahami representasi angka dalam berbagai base (untuk debugging dan low-level understanding)",
+    starterCode: `saldo = Decimal("0.00")`,
+    newCode: `# Finance Tracker - Number representation
+from decimal import Decimal
+
+saldo = Decimal("0.00")
+
+# Memahami bagaimana angka disimpan
+# Decimal 100 dalam berbagai base:
+print(f"Decimal: 100")
+print(f"Binary:  {bin(100)}")   # 0b1100100
+print(f"Hex:     {hex(100)}")   # 0x64
+print(f"Octal:   {oct(100)}")   # 0o144
+
+# Berguna untuk debugging memory issues
+# dan understanding computer storage`,
+    explanation: [
+      "Memahami number systems membantu debugging",
+      "Hex sering muncul di error messages dan memory addresses",
+      "Tidak langsung dipakai di app, tapi penting untuk understanding",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal konversi antar number systems (binary, decimal, hex). Minta user mengkonversi manual tanpa calculator. Jangan beri jawaban.",
+  },
 };

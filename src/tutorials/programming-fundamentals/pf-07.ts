@@ -394,4 +394,34 @@ print(f"Total: Rp {total:,.2f}")`,
       hideAtFrame: 77400,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Memahami pentingnya tipe data yang tepat untuk aplikasi keuangan",
+    starterCode: `saldo = 0
+pemasukan = 0
+pengeluaran = 0`,
+    newCode: `# PENTING: Untuk uang, gunakan tipe data yang tepat!
+# Python: Gunakan Decimal untuk presisi
+from decimal import Decimal
+
+saldo = Decimal("0.00")
+pemasukan = Decimal("0.00")
+pengeluaran = Decimal("0.00")
+
+# Contoh kenapa penting:
+# float: 0.1 + 0.2 = 0.30000000000000004
+# Decimal: Decimal("0.1") + Decimal("0.2") = Decimal("0.3")
+
+# Untuk aplikasi keuangan, error Rp 0.01 x 1 juta = Rp 10.000!`,
+    explanation: [
+      "Aplikasi keuangan HARUS menggunakan Decimal, bukan float",
+      "Floating point errors bisa menyebabkan kerugian finansial",
+      "Selalu inisialisasi Decimal dari string, bukan float",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal tentang typing systems. Minta user memprediksi output dari operasi antar tipe berbeda di Python, JavaScript, dan Java. Jangan beri jawaban.",
+  },
 };

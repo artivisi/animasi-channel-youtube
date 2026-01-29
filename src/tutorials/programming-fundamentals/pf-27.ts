@@ -182,4 +182,70 @@ if (user && user.name) {
       hideAtFrame: 48600,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Debugging Finance Tracker: menemukan dan memperbaiki bugs",
+    starterCode: `# Finance Tracker dengan beberapa bugs`,
+    newCode: `from decimal import Decimal
+
+# BUGGY VERSION - cari dan perbaiki!
+def hitung_saldo_buggy(transaksi):
+    saldo = 0  # BUG 1: harus Decimal("0")
+
+    for i in range(len(transaksi)):  # BUG 2: bisa pakai for trx in transaksi
+        trx = transaksi[i]
+
+        if trx["jenis"] == "masuk":
+            saldo = saldo + trx["jumlah"]
+        if trx["jenis"] == "keluar":  # BUG 3: harusnya elif
+            saldo = saldo - trx["jumlah"]
+
+    return saldo  # BUG 4: tidak handle empty list
+
+# FIXED VERSION
+def hitung_saldo(transaksi):
+    """Hitung saldo dari list transaksi"""
+    print(f"DEBUG: Processing {len(transaksi)} transaksi")  # Debug
+
+    if not transaksi:
+        print("DEBUG: Empty list, returning 0")
+        return Decimal("0")
+
+    saldo = Decimal("0")
+
+    for trx in transaksi:
+        print(f"DEBUG: {trx['jenis']} {trx['jumlah']}")  # Debug
+
+        if trx["jenis"] == "masuk":
+            saldo += trx["jumlah"]
+        elif trx["jenis"] == "keluar":
+            saldo -= trx["jumlah"]
+
+        print(f"DEBUG: Saldo sekarang: {saldo}")  # Debug
+
+    return saldo
+
+# Test dengan berbagai kasus
+test_cases = [
+    [],  # Empty list
+    [{"jenis": "masuk", "jumlah": Decimal("1000")}],  # Single
+    [{"jenis": "masuk", "jumlah": Decimal("1000")},
+     {"jenis": "keluar", "jumlah": Decimal("500")}],  # Mixed
+]
+
+for i, test in enumerate(test_cases):
+    print(f"\\n=== Test Case {i+1} ===")
+    result = hitung_saldo(test)
+    print(f"Result: {result}")`,
+    explanation: [
+      "Print debugging untuk trace execution flow",
+      "Test dengan berbagai edge cases",
+      "Fix bugs satu per satu dengan systematic approach",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal debugging. Berikan kode dengan bugs dan minta user menemukan serta memperbaikinya. Jangan beri jawaban.",
+  },
 };

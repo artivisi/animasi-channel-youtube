@@ -165,4 +165,48 @@ print(belum_dewasa)  # False`,
       hideAtFrame: 45000,
     },
   ],
+
+  caseStudy: {
+    title: "Finance Tracker",
+    episodeGoal: "Validasi input: cek apakah angka valid dan positif",
+    starterCode: `pemasukan = Decimal("500000")
+pengeluaran = Decimal("150000")`,
+    newCode: `from decimal import Decimal
+
+# Validasi input transaksi
+def validasi_jumlah(jumlah_str):
+    # Cek apakah bukan string kosong
+    if not jumlah_str:
+        return False
+
+    # Cek apakah angka positif
+    try:
+        jumlah = Decimal(jumlah_str)
+        return jumlah > 0  # Harus positif
+    except:
+        return False
+
+# Penggunaan
+input_user = "500000"
+if validasi_jumlah(input_user):
+    print("Input valid!")
+else:
+    print("Input tidak valid!")
+
+# Comparison operators untuk cek saldo
+saldo = Decimal("1000000")
+pengeluaran = Decimal("500000")
+
+cukup_saldo = saldo >= pengeluaran  # True
+print(f"Saldo cukup: {cukup_saldo}")`,
+    explanation: [
+      "Comparison operators untuk validasi (> 0, >= saldo)",
+      "Logical operators: not untuk cek empty string",
+      "Boolean result dari validasi",
+    ],
+  },
+
+  aiPrompts: {
+    exercisePrompt: "Buat 5 soal latihan comparison dan logical operators. Minta user membuat kondisi kompleks dengan and, or, not. Jangan beri jawaban.",
+  },
 };
