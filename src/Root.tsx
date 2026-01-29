@@ -4,6 +4,7 @@ import { VlogIntro } from "./animations/vlog-intro/VlogIntro";
 import { LowerThird } from "./animations/lower-third/LowerThird";
 import { Transition } from "./animations/transition/Transition";
 import { Outro } from "./animations/outro/Outro";
+import { PFIntro, PFOutro } from "./animations/programming-fundamentals";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -46,6 +47,28 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+      />
+
+      {/* Programming Fundamentals Series */}
+      <Composition
+        id="PFIntro"
+        component={PFIntro}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="PFOutro"
+        component={PFOutro}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          nextEpisodeTitle: "Setup GitHub & Codespaces",
+        }}
       />
     </>
   );
