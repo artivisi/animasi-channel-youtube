@@ -214,7 +214,7 @@ export const pf06: VideoOutline = {
         "Java = static + strong",
         "Python = dynamic + strong",
         "JavaScript = dynamic + weak",
-        "Next episode: Type Conversion",
+        "Next episode: Number Systems",
       ],
       showOnScreen: "webcam",
     },

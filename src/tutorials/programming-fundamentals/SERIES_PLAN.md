@@ -214,7 +214,7 @@
 
 ---
 
-### Module 3: Variables & Data Types (Episodes 5-7)
+### Module 3: Variables & Data Types (Episodes 5-8)
 
 #### Episode 5: Variables - Menyimpan Data
 **Duration:** 30 min
@@ -370,7 +370,61 @@
 
 ---
 
-#### Episode 7: Type Conversion & String Operations
+#### Episode 7: Number Systems: Binary, Octal, Decimal, Hexadecimal
+**Duration:** 30 min
+
+**Outline:**
+- [00:00] Intro
+- [02:00] Decimal (Base 10)
+  - Yang kita pakai sehari-hari
+  - 10 digits: 0-9
+  - Positional notation
+- [05:00] Binary (Base 2)
+  - Bahasa komputer: hanya 0 dan 1
+  - Conversion: 1011 binary = 11 decimal
+  - Kenapa binary? Elektronik on/off
+  - 1 bit = 1 binary digit, 8 bits = 1 byte
+- [10:00] Binary dan Integer Limits
+  - 8-bit unsigned: 0-255
+  - 32-bit signed int: -2,147,483,648 sampai 2,147,483,647
+  - Kenapa integer ada batasnya
+- [13:00] Hexadecimal (Base 16)
+  - 16 digits: 0-9, A-F
+  - FF hex = 255 decimal
+  - Compact way to represent binary
+  - 2 hex digits = 1 byte
+- [16:00] Hexadecimal dalam Programming
+  - Color codes: #FF0000 = Red
+  - Memory addresses: 0x7fff5fbff8c0
+  - Unicode: \u0041 = 'A'
+- [19:00] Octal (Base 8)
+  - 8 digits: 0-7
+  - Unix file permissions: chmod 755
+  - 7 = rwx, 5 = r-x
+- [22:00] Konversi di Code
+  ```python
+  # Python
+  bin(255)  # '0b11111111'
+  hex(255)  # '0xff'
+  int('FF', 16)  # 255
+  ```
+  ```javascript
+  // JavaScript
+  (255).toString(2)  // '11111111'
+  parseInt('FF', 16)  // 255
+  ```
+- [26:00] Practice & Git
+- [29:00] Outro
+
+**Infographics:**
+- Number systems comparison table
+- Binary to decimal conversion steps
+- Hex color wheel
+- Integer limits visualization
+
+---
+
+#### Episode 8: Type Conversion & String Operations
 **Duration:** 30 min
 
 **Outline:**
@@ -426,9 +480,9 @@
 
 ---
 
-### Module 4: Operators (Episodes 8-9)
+### Module 4: Operators (Episodes 9-10)
 
-#### Episode 8: Arithmetic & Assignment Operators
+#### Episode 9: Arithmetic & Assignment Operators
 **Duration:** 30 min
 
 **Outline:**
@@ -455,7 +509,7 @@
 
 ---
 
-#### Episode 9: Comparison & Logical Operators
+#### Episode 10: Comparison & Logical Operators
 **Duration:** 30 min
 
 **Outline:**
@@ -483,9 +537,9 @@
 
 ---
 
-### Module 5: Control Flow - Conditionals (Episodes 10-11)
+### Module 5: Control Flow - Conditionals (Episodes 11-12)
 
-#### Episode 10: If-Else - Membuat Keputusan
+#### Episode 11: If-Else - Membuat Keputusan
 **Duration:** 30 min
 
 **Outline:**
@@ -531,7 +585,7 @@
 
 ---
 
-#### Episode 11: Else-If & Nested Conditions
+#### Episode 12: Else-If & Nested Conditions
 **Duration:** 30 min
 
 **Outline:**
@@ -579,9 +633,9 @@
 
 ---
 
-### Module 6: Control Flow - Loops (Episodes 12-14)
+### Module 6: Control Flow - Loops (Episodes 13-15)
 
-#### Episode 12: For Loop - Pengulangan Terukur
+#### Episode 13: For Loop - Pengulangan Terukur
 **Duration:** 30 min
 
 **Outline:**
@@ -628,7 +682,7 @@
 
 ---
 
-#### Episode 13: While Loop & Loop Control
+#### Episode 14: While Loop & Loop Control
 **Duration:** 30 min
 
 **Outline:**
@@ -668,7 +722,7 @@
 
 ---
 
-#### Episode 14: Nested Loops & Common Patterns
+#### Episode 15: Nested Loops & Common Patterns
 **Duration:** 30 min
 
 **Outline:**
@@ -695,9 +749,9 @@
 
 ---
 
-### Module 7: Functions (Episodes 15-17)
+### Module 7: Functions (Episodes 16-18)
 
-#### Episode 15: Functions - Kode yang Reusable
+#### Episode 16: Functions - Kode yang Reusable
 **Duration:** 30 min
 
 **Outline:**
@@ -737,7 +791,7 @@
 
 ---
 
-#### Episode 16: Parameters & Arguments
+#### Episode 17: Parameters & Arguments
 **Duration:** 30 min
 
 **Outline:**
@@ -777,7 +831,7 @@
 
 ---
 
-#### Episode 17: Scope & Return Values
+#### Episode 18: Scope & Return Values
 **Duration:** 30 min
 
 **Outline:**
@@ -812,9 +866,9 @@
 
 ---
 
-### Module 8: Data Structures (Episodes 18-21)
+### Module 8: Data Structures (Episodes 19-22)
 
-#### Episode 18: Arrays/Lists - Kumpulan Data
+#### Episode 19: Arrays/Lists - Kumpulan Data
 **Duration:** 30 min
 
 **Outline:**
@@ -854,7 +908,7 @@
 
 ---
 
-#### Episode 19: Array Operations & Methods
+#### Episode 20: Array Operations & Methods
 **Duration:** 30 min
 
 **Outline:**
@@ -897,7 +951,7 @@
 
 ---
 
-#### Episode 20: Dictionaries/Objects - Key-Value Pairs
+#### Episode 21: Dictionaries/Objects - Key-Value Pairs
 **Duration:** 30 min
 
 **Outline:**
@@ -942,7 +996,7 @@
 
 ---
 
-#### Episode 21: Sets & Tuples
+#### Episode 22: Sets & Tuples
 **Duration:** 30 min
 
 **Outline:**
@@ -973,9 +1027,9 @@
 
 ---
 
-### Module 9: String Manipulation (Episodes 22-23)
+### Module 9: String Manipulation (Episodes 23-24)
 
-#### Episode 22: String Methods
+#### Episode 23: String Methods
 **Duration:** 30 min
 
 **Outline:**
@@ -1004,7 +1058,7 @@
 
 ---
 
-#### Episode 23: Regular Expressions Intro
+#### Episode 24: Regular Expressions Intro
 **Duration:** 30 min
 
 **Outline:**
@@ -1036,9 +1090,9 @@
 
 ---
 
-### Module 10: Error Handling (Episodes 24-25)
+### Module 10: Error Handling (Episodes 25-26)
 
-#### Episode 24: Exceptions & Try-Catch
+#### Episode 25: Exceptions & Try-Catch
 **Duration:** 30 min
 
 **Outline:**
@@ -1079,7 +1133,7 @@
 
 ---
 
-#### Episode 25: Debugging Techniques
+#### Episode 26: Debugging Techniques
 **Duration:** 30 min
 
 **Outline:**
@@ -1104,9 +1158,9 @@
 
 ---
 
-### Module 11: File I/O (Episode 26)
+### Module 11: File I/O (Episode 27)
 
-#### Episode 26: Reading & Writing Files
+#### Episode 27: Reading & Writing Files
 **Duration:** 30 min
 
 **Outline:**
@@ -1140,9 +1194,9 @@
 
 ---
 
-### Module 12: Final Projects (Episodes 27-30)
+### Module 12: Final Projects (Episodes 28-31)
 
-#### Episode 27: Project - Calculator App
+#### Episode 28: Project - Calculator App
 **Duration:** 30 min
 
 **Outline:**
@@ -1158,7 +1212,7 @@
 
 ---
 
-#### Episode 28: Project - Todo List App
+#### Episode 29: Project - Todo List App
 **Duration:** 30 min
 
 **Outline:**
@@ -1173,7 +1227,7 @@
 
 ---
 
-#### Episode 29: Project - Number Guessing Game
+#### Episode 30: Project - Number Guessing Game
 **Duration:** 30 min
 
 **Outline:**
@@ -1188,7 +1242,7 @@
 
 ---
 
-#### Episode 30: Series Wrap-Up & Next Steps
+#### Episode 31: Series Wrap-Up & Next Steps
 **Duration:** 30 min
 
 **Outline:**
