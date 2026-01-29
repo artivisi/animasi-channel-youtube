@@ -5,7 +5,7 @@ import { LowerThird } from "./animations/lower-third/LowerThird";
 import { Transition } from "./animations/transition/Transition";
 import { Outro } from "./animations/outro/Outro";
 import { PFIntro, PFOutro } from "./animations/programming-fundamentals";
-import { TypingSystemsDiagram, LanguageComparisonChart } from "./tutorials/programming-fundamentals/components";
+import { TypingSystemsDiagram, LanguageComparisonChart, AIDosDonts, HelloWorldComparison } from "./tutorials/programming-fundamentals/components";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -111,6 +111,31 @@ export const RemotionRoot: React.FC = () => {
           showTop: 10,
           highlightLanguages: ['Python', 'JavaScript', 'Java'],
         }}
+      />
+
+      {/* Episode 3 Assets */}
+      <Composition
+        id="AIDosDonts"
+        component={AIDosDonts}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          showDos: true,
+          showDonts: true,
+        }}
+      />
+
+      {/* Episode 4 Assets */}
+      <Composition
+        id="HelloWorldComparison"
+        component={HelloWorldComparison}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{}}
       />
     </>
   );

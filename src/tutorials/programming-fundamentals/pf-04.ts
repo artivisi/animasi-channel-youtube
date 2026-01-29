@@ -63,11 +63,10 @@ export const pf04: VideoOutline = {
       title: "Hello World in Java",
       talkingPoints: [
         "Buat file baru: Hello.java (huruf kapital!)",
-        "Ketik kode lengkap (lihat slide)",
-        "Lebih panjang - tapi ada alasannya",
-        "public class Hello - nama class = nama file",
-        "public static void main - entry point program",
-        "System.out.println() - function untuk output",
+        "Java 25: syntax sudah disederhanakan!",
+        "void main() - entry point program",
+        "println() - function untuk output",
+        "Tidak perlu class dan public static lagi",
         "Run: java Hello.java",
       ],
       notes: "Live coding: buat dan jalankan Hello.java",
@@ -77,13 +76,12 @@ export const pf04: VideoOutline = {
       timestamp: "22:00",
       title: "Perbandingan 3 Bahasa",
       talkingPoints: [
-        "Python: paling ringkas (1 baris)",
-        "JavaScript: medium (1 baris + semicolon)",
-        "Java: paling verbose (5+ baris)",
-        "Kenapa Java lebih panjang?",
-        "Java: structure dari awal, OOP mandatory",
-        "Python/JS: bisa langsung tulis, structure optional",
-        "Masing-masing ada kelebihan",
+        "Python: 1 baris",
+        "JavaScript: 1 baris + semicolon",
+        "Java 25: 3 baris (simplified!)",
+        "Java dulu verbose, sekarang lebih simple",
+        "Semua bahasa terus berkembang",
+        "Konsep dasar tetap sama",
       ],
       showOnScreen: "slide",
     },
@@ -155,13 +153,11 @@ export const pf04: VideoOutline = {
       hideAtFrame: 19800,
     },
     {
-      code: `public class Hello {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
+      code: `void main() {
+    println("Hello, World!");
 }`,
       title: "Hello.java",
-      highlightLines: [3],
+      highlightLines: [2],
       showAtFrame: 28800, // 16:00
       hideAtFrame: 32400,
     },
@@ -177,10 +173,8 @@ print("Welcome to Finance Tracker!")
 console.log("Welcome to Finance Tracker!");
 
 // Java
-public class FinanceTracker {
-    public static void main(String[] args) {
-        System.out.println("Welcome to Finance Tracker!");
-    }
+void main() {
+    println("Welcome to Finance Tracker!");
 }`,
     explanation: [
       "Ini adalah starting point dari aplikasi Finance Tracker",
