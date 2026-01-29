@@ -5,6 +5,7 @@ import { LowerThird } from "./animations/lower-third/LowerThird";
 import { Transition } from "./animations/transition/Transition";
 import { Outro } from "./animations/outro/Outro";
 import { PFIntro, PFOutro } from "./animations/programming-fundamentals";
+import { TypingSystemsDiagram, LanguageComparisonChart } from "./tutorials/programming-fundamentals/components";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -68,6 +69,47 @@ export const RemotionRoot: React.FC = () => {
         height={1080}
         defaultProps={{
           nextEpisodeTitle: "Setup GitHub & Codespaces",
+        }}
+      />
+
+      {/* Episode 1 Assets */}
+      <Composition
+        id="TypingSystemsDiagram"
+        component={TypingSystemsDiagram}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          showLanguages: ['Python', 'JavaScript', 'Java'],
+          animateIn: true,
+        }}
+      />
+
+      <Composition
+        id="TypingSystemsDiagramAll"
+        component={TypingSystemsDiagram}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          showLanguages: ['Python', 'JavaScript', 'Java', 'TypeScript', 'PHP', 'Go', 'Rust', 'C'],
+          animateIn: true,
+        }}
+      />
+
+      <Composition
+        id="LanguageComparisonChart"
+        component={LanguageComparisonChart}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          title: "Most Popular Programming Languages 2024",
+          showTop: 10,
+          highlightLanguages: ['Python', 'JavaScript', 'Java'],
         }}
       />
     </>
