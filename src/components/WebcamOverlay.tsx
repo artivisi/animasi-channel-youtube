@@ -9,6 +9,7 @@ export type WebcamOverlayProps = {
   showAt?: number;
   hideAt?: number;
   volume?: number;
+  startFrom?: number;
 };
 
 export const WebcamOverlay: React.FC<WebcamOverlayProps> = ({
@@ -20,6 +21,7 @@ export const WebcamOverlay: React.FC<WebcamOverlayProps> = ({
   showAt = 0,
   hideAt,
   volume = 0,
+  startFrom,
 }) => {
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
@@ -84,6 +86,7 @@ export const WebcamOverlay: React.FC<WebcamOverlayProps> = ({
       >
         <OffthreadVideo
           src={src}
+          startFrom={startFrom}
           style={{
             width: "100%",
             height: "100%",

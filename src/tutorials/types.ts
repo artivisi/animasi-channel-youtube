@@ -1,5 +1,8 @@
 // Types for tutorial video structure
 
+// Re-export transcript types for backward compatibility
+export type { Transcript, TranscriptSegment, TranscriptWord, SubtitleCue } from "./transcript-types";
+
 export type VideoSegment = {
   id: string;
   title: string;

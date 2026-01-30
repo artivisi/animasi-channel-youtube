@@ -7,6 +7,7 @@ export type SubtitlesProps = {
   style?: "default" | "boxed" | "outline";
   fontSize?: number;
   maxWidth?: number;
+  frameOffset?: number; // Add to current frame when looking up cues
 };
 
 export const Subtitles: React.FC<SubtitlesProps> = ({
@@ -15,9 +16,13 @@ export const Subtitles: React.FC<SubtitlesProps> = ({
   style = "default",
   fontSize = 48,
   maxWidth = 1400,
+  frameOffset = 0,
 }) => {
-  const frame = useCurrentFrame();
+  const rawFrame = useCurrentFrame();
   const { fps } = useVideoConfig();
+
+  // Apply offset to get the lookup frame (for cuts/edits)
+  const frame = rawFrame + frameOffset;
 
   // Find current cue
   const currentCue = cues.find(
