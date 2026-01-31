@@ -11,6 +11,3 @@ import { enableTailwind } from '@remotion/tailwind-v4';
 Config.setVideoImageFormat("jpeg");
 Config.setOverwriteOutput(true);
 Config.overrideWebpackConfig(enableTailwind);
-
-// Set public directory to external drive for video files
-Config.setPublicDir("/Volumes/ENDY1TB/Video Production/seri-programming-fundamental");

@@ -1,4 +1,4 @@
-import { AbsoluteFill, OffthreadVideo, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Video, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 
 export type WebcamOverlayProps = {
   src: string;
@@ -84,7 +84,7 @@ export const WebcamOverlay: React.FC<WebcamOverlayProps> = ({
           boxShadow: `0 0 30px ${borderColor}60, 0 10px 40px rgba(0,0,0,0.5)`,
         }}
       >
-        <OffthreadVideo
+        <Video
           src={src}
           startFrom={startFrom}
           style={{

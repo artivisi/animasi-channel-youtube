@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, Sequence, OffthreadVideo, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Sequence, Video, interpolate, useCurrentFrame } from "remotion";
 import { PFIntro, PFOutro } from "../../../animations/programming-fundamentals";
 import { Subtitles, VideoLowerThird, WebcamOverlay } from "../../../components";
 import { pf_02_camera_1Transcript, pf_02_camera_1Subtitles } from "../pf-02-transcript";
@@ -162,7 +162,7 @@ export const PF02Composition: React.FC = () => {
       <Sequence from={INTRO_DURATION} durationInFrames={part1EndFrame}>
         <AbsoluteFill>
           {/* Webcam (fullscreen when no screen recording) */}
-          <OffthreadVideo
+          <Video
             src={getVideoPath("pf-02-camera-1")}
             volume={part1Volume}
             style={{
@@ -176,7 +176,7 @@ export const PF02Composition: React.FC = () => {
           {/* Screen Recording 1 - GitHub signup & Codespaces (muted - audio from camera) */}
           <Sequence from={screen1StartFrame} durationInFrames={screen1DurationFrames}>
             <AbsoluteFill>
-              <OffthreadVideo
+              <Video
                 src={getVideoPath("pf-02-screen-1")}
                 muted
                 style={{ width: "100%", height: "100%", objectFit: "contain", backgroundColor: "#1a1a2e" }}
@@ -216,7 +216,7 @@ export const PF02Composition: React.FC = () => {
       <Sequence from={INTRO_DURATION + part2StartFrame} durationInFrames={mainContentDuration - part1EndFrame}>
         <AbsoluteFill>
           {/* Webcam continues from after the cut */}
-          <OffthreadVideo
+          <Video
             src={getVideoPath("pf-02-camera-1")}
             startFrom={part2VideostartFrom}
             volume={part2Volume}
@@ -232,7 +232,7 @@ export const PF02Composition: React.FC = () => {
           {/* At camera time 1728s (CUT_END_TIME), screen 2 should be at time 1728-1721=7s */}
           <Sequence from={screen2StartFrame - part2StartFrame} durationInFrames={screen2DurationFrames}>
             <AbsoluteFill>
-              <OffthreadVideo
+              <Video
                 src={getVideoPath("pf-02-screen-2")}
                 startFrom={Math.round((CUT_END_TIME - SCREEN2_START_CAMERA_TIME) * FPS)} // Sync screen 2 with camera timeline
                 muted
@@ -262,7 +262,7 @@ export const PF02Composition: React.FC = () => {
       <Sequence from={INTRO_DURATION + mainContentDuration} durationInFrames={screen2ExtensionDuration}>
         <AbsoluteFill>
           {/* Screen 2 continues from where camera 1 ended */}
-          <OffthreadVideo
+          <Video
             src={getVideoPath("pf-02-screen-2")}
             startFrom={Math.round((CAMERA1_END_TIME - SCREEN2_START_CAMERA_TIME) * FPS)} // ~78s into screen 2
             style={{ width: "100%", height: "100%", objectFit: "contain", backgroundColor: "#1a1a2e" }}
@@ -283,7 +283,7 @@ export const PF02Composition: React.FC = () => {
       {/* Camera 2 - Closing statement */}
       <Sequence from={INTRO_DURATION + mainContentDuration + screen2ExtensionDuration} durationInFrames={camera2Duration}>
         <AbsoluteFill>
-          <OffthreadVideo
+          <Video
             src={getVideoPath("pf-02-camera-2")}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />

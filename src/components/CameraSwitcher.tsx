@@ -1,4 +1,4 @@
-import { AbsoluteFill, OffthreadVideo, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Video, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import { CameraSwitchCue, getCameraModeAtFrame } from "../tutorials/camera-types";
 
 export type CameraSwitcherProps = {
@@ -66,7 +66,7 @@ export const CameraSwitcher: React.FC<CameraSwitcherProps> = ({
           zIndex: mode === "fullscreen" ? 1 : 0,
         }}
       >
-        <OffthreadVideo
+        <Video
           src={webcamSrc}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
           volume={mode === "fullscreen" ? webcamVolume : 0}
@@ -80,7 +80,7 @@ export const CameraSwitcher: React.FC<CameraSwitcherProps> = ({
           zIndex: mode === "fullscreen" ? 0 : 1,
         }}
       >
-        <OffthreadVideo
+        <Video
           src={screenSrc}
           style={{ width: "100%", height: "100%", objectFit: "contain" }}
           volume={screenVolume}
@@ -105,7 +105,7 @@ export const CameraSwitcher: React.FC<CameraSwitcherProps> = ({
             zIndex: 10,
           }}
         >
-          <OffthreadVideo
+          <Video
             src={webcamSrc}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
             volume={webcamVolume}

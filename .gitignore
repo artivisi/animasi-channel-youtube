@@ -16,11 +16,16 @@ out
 
 # Footage files (large video recordings)
 footage/
+public/footage/
 *.mp4
 *.mov
 *.mkv
 *.avi
 *.webm
+*.MOV
+
+# macOS resource fork files
+._*
 
 # But allow footage in src for small clips
 !src/**/*.mp4

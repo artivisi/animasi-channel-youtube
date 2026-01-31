@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, Sequence, OffthreadVideo } from "remotion";
+import { AbsoluteFill, Sequence, Video } from "remotion";
 import { PFIntro, PFOutro } from "../../../animations/programming-fundamentals";
 import { Subtitles, VideoLowerThird } from "../../../components";
 import { pf_01_cameraTranscript, pf_01_cameraSubtitles } from "../pf-01-transcript";
@@ -80,7 +80,7 @@ export const PF01Composition: React.FC = () => {
       <Sequence from={INTRO_DURATION} durationInFrames={mainContentDuration}>
         <AbsoluteFill>
           {/* Webcam video */}
-          <OffthreadVideo
+          <Video
             src={getVideoPath("pf-01-camera")}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />

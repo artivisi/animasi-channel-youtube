@@ -1,4 +1,4 @@
-import { AbsoluteFill, OffthreadVideo, Sequence, useVideoConfig } from "remotion";
+import { AbsoluteFill, Video, Sequence, useVideoConfig } from "remotion";
 import { VideoLowerThird, WebcamOverlay, ZoomPan, CodeHighlight } from "../components";
 import { VideoOutline, ZoomCue } from "./types";
 
@@ -29,7 +29,7 @@ export const TutorialComposition: React.FC<TutorialCompositionProps> = ({
       {/* Main video with zoom/pan */}
       <ZoomPan keyframes={zoomKeyframes}>
         <AbsoluteFill>
-          <OffthreadVideo
+          <Video
             src={mainVideoSrc}
             style={{
               width: "100%",
