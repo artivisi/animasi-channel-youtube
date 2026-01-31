@@ -24,7 +24,7 @@ import {
   ProgrammingLanguageLogos,
   LearningCurve,
 } from "./tutorials/programming-fundamentals/components";
-import { VideoLowerThird } from "./components";
+import { VideoLowerThird, PipFrame } from "./components";
 import {
   PF01Composition,
   PF01_DURATION,
@@ -227,6 +227,18 @@ export const RemotionRoot: React.FC = () => {
       />
 
       <Composition
+        id="EP02-Outro"
+        component={PFOutro}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          nextEpisodeTitle: "Belajar Coding dengan AI",
+        }}
+      />
+
+      <Composition
         id="EP01-LanguageComparisonChart"
         component={LanguageComparisonChart}
         durationInFrames={180}
@@ -421,6 +433,16 @@ export const RemotionRoot: React.FC = () => {
         width={1920}
         height={1080}
         defaultProps={{ showExamples: true }}
+      />
+
+      {/* PIP Frame Border - for FFmpeg overlay */}
+      <Composition
+        id="PipFrame"
+        component={PipFrame}
+        durationInFrames={1}
+        fps={30}
+        width={320}
+        height={240}
       />
     </>
   );

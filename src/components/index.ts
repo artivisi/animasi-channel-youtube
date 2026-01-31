@@ -18,3 +18,5 @@ export type { InfographicProps } from "./Infographic";
 
 export { CameraSwitcher } from "./CameraSwitcher";
 export type { CameraSwitcherProps } from "./CameraSwitcher";
+
+export { PipFrame } from "./PipFrame";

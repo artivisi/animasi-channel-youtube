@@ -1,7 +1,8 @@
 import React from "react";
-import { AbsoluteFill, Sequence, Video, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Sequence, interpolate, useCurrentFrame } from "remotion";
+import { Video } from "@remotion/media";
 import { PFIntro, PFOutro } from "../../../animations/programming-fundamentals";
-import { Subtitles, VideoLowerThird, WebcamOverlay } from "../../../components";
+import { Subtitles, VideoLowerThird, PipFrame } from "../../../components";
 import { pf_02_camera_1Transcript, pf_02_camera_1Subtitles } from "../pf-02-transcript";
 import { pf_02_camera_2Transcript, pf_02_camera_2Subtitles } from "../pf-02-camera-2-transcript";
 import { pf_02_screen_2Subtitles } from "../pf-02-screen-2-transcript";
@@ -184,14 +185,26 @@ export const PF02Composition: React.FC = () => {
             </AbsoluteFill>
           </Sequence>
 
-          {/* Webcam PIP (when screen is active) */}
+          {/* Webcam PIP (when screen is active) - matches FFmpeg output */}
           {isScreenActive && (
-            <WebcamOverlay
-              src={getVideoPath("pf-02-camera-1")}
-              position="bottom-right"
-              size="medium"
-              borderColor="#22c55e"
-            />
+            <div
+              style={{
+                position: "absolute",
+                bottom: 40,
+                right: 40,
+                width: 320,
+                height: 240,
+                overflow: "hidden",
+                borderRadius: 16,
+              }}
+            >
+              <Video
+                src={getVideoPath("pf-02-camera-1")}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                volume={0}
+              />
+              <PipFrame />
+            </div>
           )}
 
           {/* Episode title lower third */}
@@ -218,7 +231,7 @@ export const PF02Composition: React.FC = () => {
           {/* Webcam continues from after the cut */}
           <Video
             src={getVideoPath("pf-02-camera-1")}
-            startFrom={part2VideostartFrom}
+            trimBefore={part2VideostartFrom}
             volume={part2Volume}
             style={{
               width: "100%",
@@ -234,22 +247,34 @@ export const PF02Composition: React.FC = () => {
             <AbsoluteFill>
               <Video
                 src={getVideoPath("pf-02-screen-2")}
-                startFrom={Math.round((CUT_END_TIME - SCREEN2_START_CAMERA_TIME) * FPS)} // Sync screen 2 with camera timeline
+                trimBefore={Math.round((CUT_END_TIME - SCREEN2_START_CAMERA_TIME) * FPS)} // Sync screen 2 with camera timeline
                 muted
                 style={{ width: "100%", height: "100%", objectFit: "contain", backgroundColor: "#1a1a2e" }}
               />
             </AbsoluteFill>
           </Sequence>
 
-          {/* Webcam PIP (when screen is active) */}
+          {/* Webcam PIP (when screen is active) - matches FFmpeg output */}
           {isScreenActive && (
-            <WebcamOverlay
-              src={getVideoPath("pf-02-camera-1")}
-              startFrom={part2VideostartFrom}
-              position="bottom-right"
-              size="medium"
-              borderColor="#22c55e"
-            />
+            <div
+              style={{
+                position: "absolute",
+                bottom: 40,
+                right: 40,
+                width: 320,
+                height: 240,
+                overflow: "hidden",
+                borderRadius: 16,
+              }}
+            >
+              <Video
+                src={getVideoPath("pf-02-camera-1")}
+                trimBefore={part2VideostartFrom}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                volume={0}
+              />
+              <PipFrame />
+            </div>
           )}
 
           {/* Subtitles - offset to match original video timeline after the cut */}
@@ -264,7 +289,7 @@ export const PF02Composition: React.FC = () => {
           {/* Screen 2 continues from where camera 1 ended */}
           <Video
             src={getVideoPath("pf-02-screen-2")}
-            startFrom={Math.round((CAMERA1_END_TIME - SCREEN2_START_CAMERA_TIME) * FPS)} // ~78s into screen 2
+            trimBefore={Math.round((CAMERA1_END_TIME - SCREEN2_START_CAMERA_TIME) * FPS)} // ~78s into screen 2
             style={{ width: "100%", height: "100%", objectFit: "contain", backgroundColor: "#1a1a2e" }}
           />
           {/* Subtitles from screen 2, offset to start from ~78s */}

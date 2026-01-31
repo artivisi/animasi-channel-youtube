@@ -65,6 +65,28 @@ get_encoder_opts() {
 }
 
 #-------------------------------------------------------------------------------
+# Hide/restore footage folder to speed up Remotion bundling
+# Overlays don't need footage, so we temporarily hide it
+#-------------------------------------------------------------------------------
+FOOTAGE_DIR="$PROJECT_DIR/public/footage"
+FOOTAGE_HIDDEN="$PROJECT_DIR/.footage-hidden"
+
+hide_footage() {
+    if [ -d "$FOOTAGE_DIR" ] && [ ! -d "$FOOTAGE_HIDDEN" ]; then
+        mv "$FOOTAGE_DIR" "$FOOTAGE_HIDDEN"
+    fi
+}
+
+restore_footage() {
+    if [ -d "$FOOTAGE_HIDDEN" ] && [ ! -d "$FOOTAGE_DIR" ]; then
+        mv "$FOOTAGE_HIDDEN" "$FOOTAGE_DIR"
+    fi
+}
+
+# Ensure footage is restored on script exit
+trap restore_footage EXIT
+
+#-------------------------------------------------------------------------------
 # Render Remotion composition
 #-------------------------------------------------------------------------------
 render_composition() {
@@ -79,6 +101,9 @@ render_composition() {
 
     echo "    [render] $comp_id"
 
+    # Hide footage to speed up bundling
+    hide_footage
+
     if [ "$type" = "transparent" ]; then
         npx remotion render src/index.ts "$comp_id" "$output" \
             --codec prores \
@@ -92,6 +117,34 @@ render_composition() {
             --prores-profile 4444 \
             2>&1 | grep -E "^\[" | tail -1 || true
     fi
+
+    # Restore footage after rendering
+    restore_footage
+}
+
+#-------------------------------------------------------------------------------
+# Render Remotion still (single frame PNG)
+#-------------------------------------------------------------------------------
+render_still() {
+    local comp_id=$1
+    local output=$2
+
+    if [ -f "$output" ]; then
+        echo "    [skip] $(basename "$output")"
+        return
+    fi
+
+    echo "    [render] $comp_id (still)"
+
+    # Hide footage to speed up bundling
+    hide_footage
+
+    npx remotion still src/index.ts "$comp_id" "$output" \
+        --image-format png \
+        2>&1 | grep -E "^\[" | tail -1 || true
+
+    # Restore footage after rendering
+    restore_footage
 }
 
 #-------------------------------------------------------------------------------
@@ -253,7 +306,10 @@ render_ep02() {
     echo "Step 1: Rendering Remotion overlays..."
     render_composition "PFIntro" "$OVERLAY_DIR/intro.mov" "solid"
     render_composition "EP02-LowerThird" "$OVERLAY_DIR/lower-third.mov" "transparent"
-    render_composition "PFOutro" "$OVERLAY_DIR/outro.mov" "solid"
+    render_composition "EP02-Outro" "$OVERLAY_DIR/outro.mov" "solid"
+    render_still "PipFrame" "$OVERLAY_DIR/pip-frame.png"
+
+    local PIP_FRAME="$OVERLAY_DIR/pip-frame.png"
 
     #---------------------------------------------------------------------------
     # Step 2: Encode intro
@@ -288,16 +344,19 @@ render_ep02() {
     echo ""
     echo "Step 4: Processing screen+PIP segment 1 (3:55-27:46)..."
     # Duration: 1666 - 235.8 = 1430.2 seconds
+    # PIP: 320x240 (4:3) with camera cropped to fit, styled frame overlay
     ffmpeg -y \
+        -ss 235.8 -i "$CAMERA1" \
         -i "$SCREEN1" \
-        -i "$CAMERA1" \
+        -i "$PIP_FRAME" \
         -filter_complex "
-            [0:v]fps=$fps,trim=0:1430.2,setpts=PTS-STARTPTS,scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=#1a1a2e[screen];
-            [1:v]fps=$fps,trim=235.8:1666,setpts=PTS-STARTPTS,scale=384:-1[pip];
+            [1:v]fps=$fps,trim=0:1430.2,setpts=PTS-STARTPTS,scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=#1a1a2e[screen];
+            [0:v]fps=$fps,setpts=PTS-STARTPTS,scale=320:240:force_original_aspect_ratio=increase,crop=320:240[cam];
+            [cam][2:v]overlay=0:0[pip];
             [screen][pip]overlay=W-w-40:H-h-40[vout]
         " \
-        -map "[vout]" \
-        -ss 235.8 -t 1430.2 -map 1:a \
+        -map "[vout]" -map 0:a \
+        -t 1430.2 \
         -c:v $ENCODER $ENCODER_OPTS -c:a aac -b:a 192k -r $fps \
         "$TEMP_DIR/03-screen1-pip.mp4" 2>&1 | grep -E "^frame=" | tail -1 || true
 
@@ -308,16 +367,19 @@ render_ep02() {
     echo ""
     echo "Step 5: Processing screen+PIP segment 2 (28:43-29:59)..."
     # Camera 1 from 1723s, Screen 2 from 2s, duration ~76.5s
+    # PIP: 320x240 (4:3) with camera cropped to fit, styled frame overlay
     ffmpeg -y \
-        -i "$SCREEN2" \
-        -i "$CAMERA1" \
+        -ss 1723 -i "$CAMERA1" \
+        -ss 2 -i "$SCREEN2" \
+        -i "$PIP_FRAME" \
         -filter_complex "
-            [0:v]fps=$fps,trim=2:78.5,setpts=PTS-STARTPTS,scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=#1a1a2e[screen];
-            [1:v]fps=$fps,trim=1723:1799.5,setpts=PTS-STARTPTS,scale=384:-1[pip];
+            [1:v]fps=$fps,setpts=PTS-STARTPTS,scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=#1a1a2e[screen];
+            [0:v]fps=$fps,setpts=PTS-STARTPTS,scale=320:240:force_original_aspect_ratio=increase,crop=320:240[cam];
+            [cam][2:v]overlay=0:0[pip];
             [screen][pip]overlay=W-w-40:H-h-40[vout]
         " \
-        -map "[vout]" \
-        -ss 1723 -t 76.5 -map 1:a \
+        -map "[vout]" -map 0:a \
+        -t 76.5 \
         -c:v $ENCODER $ENCODER_OPTS -c:a aac -b:a 192k -r $fps \
         "$TEMP_DIR/04-screen2-pip.mp4" 2>&1 | grep -E "^frame=" | tail -1 || true
 
@@ -327,13 +389,14 @@ render_ep02() {
     echo ""
     echo "Step 6: Processing screen-only segment (29:59-30:51)..."
     # Screen 2 from 78.5s to 131s (52.5s) - uses screen audio
+    # Use input seeking for efficiency, then trim both audio and video in filter
     ffmpeg -y \
-        -i "$SCREEN2" \
+        -ss 78.5 -i "$SCREEN2" \
         -filter_complex "
-            [0:v]fps=$fps,trim=78.5:131,setpts=PTS-STARTPTS,scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=#1a1a2e[vout]
+            [0:v]fps=$fps,trim=0:52.5,setpts=PTS-STARTPTS,scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=#1a1a2e[vout];
+            [0:a]atrim=0:52.5,asetpts=PTS-STARTPTS[aout]
         " \
-        -map "[vout]" \
-        -ss 78.5 -t 52.5 -map 0:a \
+        -map "[vout]" -map "[aout]" \
         -c:v $ENCODER $ENCODER_OPTS -c:a aac -b:a 192k -r $fps \
         "$TEMP_DIR/05-screen2-only.mp4" 2>&1 | grep -E "^frame=" | tail -1 || true
 
