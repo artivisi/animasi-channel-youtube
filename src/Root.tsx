@@ -23,6 +23,11 @@ import {
   HumanVsComputer,
   ProgrammingLanguageLogos,
   LearningCurve,
+  CompilationProcess,
+  WhyThreeLanguages,
+  PHPPopularity,
+  OtherLanguages,
+  SeriesPreview,
 } from "./tutorials/programming-fundamentals/components";
 import { VideoLowerThird, PipFrame } from "./components";
 import {
@@ -208,6 +213,51 @@ export const RemotionRoot: React.FC = () => {
         id="EP01-LearningCurve"
         component={LearningCurve}
         durationInFrames={2700}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="EP01-CompilationProcess"
+        component={CompilationProcess}
+        durationInFrames={750}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="EP01-WhyThreeLanguages"
+        component={WhyThreeLanguages}
+        durationInFrames={750}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="EP01-PHPPopularity"
+        component={PHPPopularity}
+        durationInFrames={750}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="EP01-OtherLanguages"
+        component={OtherLanguages}
+        durationInFrames={750}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="EP01-SeriesPreview"
+        component={SeriesPreview}
+        durationInFrames={750}
         fps={30}
         width={1920}
         height={1080}

@@ -56,6 +56,13 @@
         "comment": "8:41 - Golang, PHP, Python, Ruby"
       },
       {
+        "composition": "EP01-CompilationProcess",
+        "startFrame": 21600,
+        "duration": 750,
+        "type": "solid",
+        "comment": "12:00 - high-level to binary"
+      },
+      {
         "composition": "EP01-LanguageComparisonChart",
         "startFrame": 28290,
         "duration": 180,
@@ -63,11 +70,46 @@
         "comment": "15:43 - Stack Overflow survey"
       },
       {
+        "composition": "EP01-WhyThreeLanguages",
+        "startFrame": 33300,
+        "duration": 750,
+        "type": "solid",
+        "comment": "18:30 - kenapa belajar 3 bahasa"
+      },
+      {
+        "composition": "EP01-PHPPopularity",
+        "startFrame": 39900,
+        "duration": 750,
+        "type": "solid",
+        "comment": "22:10 - PHP di Indonesia"
+      },
+      {
         "composition": "EP01-TypingSystemsDiagram",
         "startFrame": 43050,
         "duration": 180,
         "type": "transparent",
-        "comment": "23:55 - typing systems"
+        "comment": "23:55 - typing systems (3 languages)"
+      },
+      {
+        "composition": "EP01-TypingSystemsDiagramAll",
+        "startFrame": 44100,
+        "duration": 600,
+        "type": "transparent",
+        "comment": "24:30 - typing systems (8 languages)"
+      },
+      {
+        "composition": "EP01-OtherLanguages",
+        "startFrame": 46800,
+        "duration": 750,
+        "type": "solid",
+        "comment": "26:00 - Go, Rust, TypeScript, etc"
+      },
+      {
+        "composition": "EP01-SeriesPreview",
+        "startFrame": 49500,
+        "duration": 750,
+        "type": "solid",
+        "comment": "27:30 - Finance Tracker + final projects"
       }
     ]
   }
