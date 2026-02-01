@@ -148,3 +148,47 @@ Use `Video` from `@remotion/media` (not `OffthreadVideo` from remotion):
 import { Video } from "@remotion/media";
 <Video src={getVideoPath("pf-01-camera")} trimBefore={startFrame} />
 ```
+
+## YouTube Upload Pipeline
+
+Scripts in `scripts/` for batch uploading to YouTube with scheduled publishing.
+
+### Setup (one-time)
+1. Create Google Cloud project, enable YouTube Data API v3
+2. Create OAuth 2.0 credentials (Desktop app)
+3. Save as `client_secret.json` in project root
+4. Add yourself as test user in OAuth consent screen
+5. Run `node scripts/youtube-auth.mjs`
+
+### Workflow
+
+```bash
+# 1. Generate metadata for all episodes (with scheduling)
+node scripts/generate-youtube-metadata.mjs all --start-date 2026-02-01 --interval 2
+
+# 2. Generate thumbnails with AI (Gemini, DALL-E, etc.)
+#    Then resize to 1280x720:
+ffmpeg -i input.png -vf "scale=720:720,pad=1280:720:(ow-iw)/2:0:color=#0d1117" thumbnails/ep01.png
+
+# 3. Upload (batch or single)
+node scripts/youtube-batch-upload.mjs ep01 ep03
+node scripts/youtube-upload.mjs scripts/youtube-metadata/ep01.json path/to/video.mp4
+```
+
+### Metadata Generation
+- Reads episode outlines from `src/tutorials/programming-fundamentals/pf-XX.ts`
+- Extracts title, description, timeline markers from outline timestamps
+- Adds common + episode-specific tags
+- Outputs to `scripts/youtube-metadata/epXX.json`
+
+### Upload Features
+- Title, description, tags from metadata JSON
+- Custom thumbnail from `thumbnails/epXX.png`
+- Auto-creates playlist, adds video
+- Scheduled publishing (private with publishAt)
+
+## Recording Setup
+
+- **Camera**: Nikon ZFC (records to SD card as `.MOV`)
+- **Screen**: QuickTime Player Screen Recording (`.mov`)
+- **Storage**: External drive, symlinked to `footage/` folder
