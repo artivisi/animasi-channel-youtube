@@ -9,6 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run lint` - Run ESLint and TypeScript checks
 - `npx remotion render <CompositionId>` - Render specific composition
 - `npx remotion render <CompositionId> out/filename.mp4` - Render to file
+- `./scripts/render-from-config.sh ep01` - **Recommended** FFmpeg render pipeline (5-6x faster)
 
 ## Architecture
 
@@ -115,3 +116,35 @@ Located in `src/assets/audio/`:
 - `outro-static.wav` - Static noise for glitch moments
 - `white-noise.wav` - Ambient background noise
 - `dialup-modem.wav` - Retro modem sound (used in VlogIntro)
+
+## FFmpeg Render Pipeline
+
+Full episodes use a hybrid Remotion + FFmpeg pipeline for faster rendering:
+
+1. **Episode configs** in `scripts/episode-config/epXX.json` define:
+   - Intro/outro compositions
+   - Camera footage path
+   - B-roll overlays with timestamps and types
+
+2. **Render script** `./scripts/render-from-config.sh`:
+   - Renders Remotion overlays as ProRes with alpha
+   - Composites onto camera footage with FFmpeg (GPU accelerated)
+   - Concatenates intro + main + outro
+
+3. **Overlay types**:
+   - `solid`: Full-screen replacement (diagrams, charts)
+   - `transparent`: Overlay on camera (lower thirds)
+
+4. **Adding new B-roll**:
+   - Create component in `src/tutorials/programming-fundamentals/components/`
+   - Export from `components/index.ts`
+   - Register `<Composition>` in `src/Root.tsx`
+   - Add to episode config JSON with startFrame and duration
+
+## Video Component
+
+Use `Video` from `@remotion/media` (not `OffthreadVideo` from remotion):
+```tsx
+import { Video } from "@remotion/media";
+<Video src={getVideoPath("pf-01-camera")} trimBefore={startFrame} />
+```

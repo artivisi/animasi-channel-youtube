@@ -183,7 +183,8 @@ export const VIDEO_PATHS = {
 } as const;
 
 // In composition:
-<OffthreadVideo src={getVideoPath("pf-01-camera")} />
+import { Video } from "@remotion/media";
+<Video src={getVideoPath("pf-01-camera")} />
 ```
 
 **Note:** Ensure the external drive is mounted before starting Remotion Studio or rendering.
@@ -432,10 +433,12 @@ const OUTRO_DURATION = 180; // 6 seconds
 **Webcam-only episode** (e.g., PF01, PF03):
 ```tsx
 // src/tutorials/programming-fundamentals/compositions/PF01Composition.tsx
-import { AbsoluteFill, Sequence, staticFile, OffthreadVideo } from "remotion";
+import { AbsoluteFill, Sequence } from "remotion";
+import { Video } from "@remotion/media";
 import { PFIntro } from "../../../animations/programming-fundamentals";
 import { Subtitles, VideoLowerThird } from "../../../components";
 import { pf_01_cameraTranscript, pf_01_cameraSubtitles } from "../pf-01-transcript";
+import { getVideoPath } from "../video-paths";
 
 const FPS = 30;
 const INTRO_DURATION = 150; // 5 seconds
@@ -455,8 +458,8 @@ export const PF01Composition: React.FC = () => {
       {/* Main Content - Webcam */}
       <Sequence from={INTRO_DURATION} durationInFrames={mainContentDuration}>
         <AbsoluteFill>
-          <OffthreadVideo
-            src={staticFile("programming-fundamentals/pf-01-camera.mov")}
+          <Video
+            src={getVideoPath("pf-01-camera")}
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
 
@@ -480,27 +483,23 @@ export const PF01_DURATION = INTRO_DURATION + mainContentDuration;
 **Episode with screen + webcam** (e.g., PF02):
 ```tsx
 // src/tutorials/programming-fundamentals/compositions/PF02Composition.tsx
-import { AbsoluteFill, Sequence, staticFile, OffthreadVideo, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Sequence, useCurrentFrame } from "remotion";
+import { Video } from "@remotion/media";
 import { PFIntro } from "../../../animations/programming-fundamentals";
-import { Subtitles, VideoLowerThird, WebcamOverlay } from "../../../components";
-import { pf_02_camera_1Transcript, pf_02_camera_1Subtitles } from "../pf-02-transcript";
+import { Subtitles, VideoLowerThird, PipFrame } from "../../../components";
+import { pf_02_camera_1Subtitles } from "../pf-02-transcript";
 import { pf_02_camera_1_pf_02_screen_1_sync } from "../pf-02-sync-screen1";
+import { getVideoPath } from "../video-paths";
 
 const FPS = 30;
 const INTRO_DURATION = 150;
 
 // Sync point from transcript matching
 const SCREEN1_START_CAMERA_TIME = pf_02_camera_1_pf_02_screen_1_sync.offset;
-const SCREEN1_DURATION = 24.2 * 60; // from video duration
-
-const screen1StartFrame = Math.round(SCREEN1_START_CAMERA_TIME * FPS);
-const screen1DurationFrames = Math.round(SCREEN1_DURATION * FPS);
 
 export const PF02Composition: React.FC = () => {
   const frame = useCurrentFrame();
-  const mainContentFrame = frame - INTRO_DURATION;
-  const isScreenActive = mainContentFrame >= screen1StartFrame &&
-    mainContentFrame < screen1StartFrame + screen1DurationFrames;
+  const isScreenActive = /* calculate based on timeline */;
 
   return (
     <AbsoluteFill style={{ backgroundColor: "#000" }}>
@@ -511,25 +510,22 @@ export const PF02Composition: React.FC = () => {
       <Sequence from={INTRO_DURATION} durationInFrames={mainContentDuration}>
         <AbsoluteFill>
           {/* Webcam fullscreen when no screen */}
-          <OffthreadVideo
-            src={staticFile("programming-fundamentals/pf-02-camera-1.mov")}
+          <Video
+            src={getVideoPath("pf-02-camera-1")}
             style={{ opacity: isScreenActive ? 0 : 1 }}
           />
 
           {/* Screen recording */}
           <Sequence from={screen1StartFrame} durationInFrames={screen1DurationFrames}>
-            <OffthreadVideo
-              src={staticFile("programming-fundamentals/pf-02-screen-1.mov")}
-            />
+            <Video src={getVideoPath("pf-02-screen-1")} />
           </Sequence>
 
           {/* Webcam PIP when screen is active */}
           {isScreenActive && (
-            <WebcamOverlay
-              src={staticFile("programming-fundamentals/pf-02-camera-1.mov")}
-              position="bottom-right"
-              size="medium"
-            />
+            <div style={{ position: "absolute", bottom: 40, right: 40, width: 320, height: 240 }}>
+              <Video src={getVideoPath("pf-02-camera-1")} volume={0} />
+              <PipFrame />
+            </div>
           )}
 
           <Subtitles cues={pf_02_camera_1Subtitles} />
@@ -573,6 +569,40 @@ Use the config-based FFmpeg render pipeline for full episodes:
 2. Renders Remotion overlays (intro, outro, b-roll) as ProRes with alpha
 3. Composites onto camera footage using FFmpeg with GPU acceleration
 4. Concatenates intro + main + outro
+
+**Episode Config Format** (`scripts/episode-config/ep01.json`):
+```json
+{
+  "id": "ep01",
+  "title": "Apa Itu Programming?",
+  "fps": 30,
+  "intro": { "composition": "PFIntro", "duration": 150 },
+  "outro": { "composition": "PFOutro", "duration": 180 },
+  "mainContent": {
+    "camera": "ep-01/camera/DSC_8013.MOV",
+    "overlays": [
+      {
+        "composition": "EP01-LowerThird",
+        "startFrame": 60,
+        "duration": 180,
+        "type": "transparent",
+        "comment": "0:02 - Episode title"
+      },
+      {
+        "composition": "EP01-CompilationProcess",
+        "startFrame": 21600,
+        "duration": 750,
+        "type": "solid",
+        "comment": "12:00 - high-level to binary"
+      }
+    ]
+  }
+}
+```
+
+**Overlay types:**
+- `transparent`: Overlay on top of camera (lower thirds, charts)
+- `solid`: Replace camera entirely (full-screen diagrams)
 
 **Render time estimates:**
 - 30-minute episode: ~5-6 minutes (5-6x realtime)
