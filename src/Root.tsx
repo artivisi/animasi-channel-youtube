@@ -5,6 +5,26 @@ import { LowerThird } from "./animations/lower-third/LowerThird";
 import { Transition } from "./animations/transition/Transition";
 import { Outro } from "./animations/outro/Outro";
 import { PFIntro, PFOutro } from "./animations/programming-fundamentals";
+import { CLNAIntro, CLNAOutro, CLNALowerThird } from "./animations/cloud-linux-network";
+import {
+  HardwareComponents,
+  OSLayers,
+  OSComparison,
+  WhyLinuxServer,
+  LinuxHistory,
+  WhatIsDistro,
+  PopularDistros,
+  DesktopVsServer,
+  VMArchitecture,
+  ContainerArchitecture,
+  VMvsContainer,
+  VirtualizationComparison,
+  VirtualBoxNetworkModes,
+  WhatIsISO,
+  VMSettings,
+  InstallationSteps,
+  PostInstallChecklist,
+} from "./tutorials/cloud-linux-network/components";
 import {
   TypingSystemsDiagram,
   LanguageComparisonChart,
@@ -493,6 +513,200 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={320}
         height={240}
+      />
+
+      {/* Cloud & Linux Network Administration - Series */}
+      <Composition
+        id="CLNAIntro"
+        component={CLNAIntro}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="CLNAOutro"
+        component={CLNAOutro}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          nextEpisodeTitle: "Linux Command Line Basics",
+        }}
+      />
+
+      <Composition
+        id="CLNALowerThird"
+        component={CLNALowerThird}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          title: "Introduction to Linux",
+          subtitle: "Cloud & Linux Network Admin - Episode 1",
+          command: "cat /etc/os-release",
+        }}
+      />
+
+      {/* CLNA Module 1 - Episode 1: Komputer dan Sistem Operasi */}
+      <Composition
+        id="CLNA-HardwareComponents"
+        component={HardwareComponents}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="CLNA-OSLayers"
+        component={OSLayers}
+        durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="CLNA-OSComparison"
+        component={OSComparison}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="CLNA-WhyLinuxServer"
+        component={WhyLinuxServer}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* CLNA Module 1 - Episode 2: Mengenal Linux dan Ubuntu */}
+      <Composition
+        id="CLNA-LinuxHistory"
+        component={LinuxHistory}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="CLNA-WhatIsDistro"
+        component={WhatIsDistro}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="CLNA-PopularDistros"
+        component={PopularDistros}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="CLNA-DesktopVsServer"
+        component={DesktopVsServer}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* CLNA Module 1 - Episode 3: Virtualisasi dan Container */}
+      <Composition
+        id="CLNA-VMArchitecture"
+        component={VMArchitecture}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="CLNA-ContainerArchitecture"
+        component={ContainerArchitecture}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="CLNA-VMvsContainer"
+        component={VMvsContainer}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="CLNA-VirtualizationComparison"
+        component={VirtualizationComparison}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* CLNA Module 1 - Episode 4: Install VirtualBox */}
+      <Composition
+        id="CLNA-VirtualBoxNetworkModes"
+        component={VirtualBoxNetworkModes}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* CLNA Module 1 - Episode 5: Install Ubuntu Desktop */}
+      <Composition
+        id="CLNA-WhatIsISO"
+        component={WhatIsISO}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="CLNA-VMSettings"
+        component={VMSettings}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="CLNA-InstallationSteps"
+        component={InstallationSteps}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="CLNA-PostInstallChecklist"
+        component={PostInstallChecklist}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
       />
     </>
   );
