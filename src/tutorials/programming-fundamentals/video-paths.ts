@@ -19,6 +19,10 @@ export const VIDEO_PATHS = {
 
   // Episode 3
   "pf-03-camera": staticFile("footage/ep-03/camera/DSC_8016.MOV"),
+
+  // Episode 4
+  "pf-04-camera": staticFile("footage/ep-04/camera/DSC_8017.MOV"),
+  "pf-04-screen": staticFile("footage/ep-04/screen/Screen Recording 2026-02-04 at 08.52.25.mov"),
 } as const;
 
 export type VideoKey = keyof typeof VIDEO_PATHS;

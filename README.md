@@ -208,19 +208,70 @@ Recording setup:
 - **Camera**: Nikon ZFC → records to SD card as `.MOV`
 - **Screen**: QuickTime Player → Screen Recording → saves as `.mov`
 
-Output files:
-- **Camera recording**: `footage/programming-fundamentals/pf-01-camera.mov`
-- **Screen recording**: `footage/programming-fundamentals/pf-01-screen.mov`
+**Raw footage organization:**
 
-For episodes with multiple recordings:
-- `pf-02-camera-1.mov`, `pf-02-camera-2.mov` (multiple camera takes)
-- `pf-02-screen-1.mov`, `pf-02-screen-2.mov` (multiple screen sessions)
+After recording, dump files to a staging folder named by topic:
+```
+seri-programming-fundamental/raw-footage/<topic-name>/
+├── camera/
+│   └── DSC_XXXX.MOV
+└── screencasts/
+    └── Screen Recording YYYY-MM-DD at HH.MM.SS.mov
+```
 
-Naming convention: `{series}-{episode}-{type}[-{number}].{ext}`
+Example: `raw-footage/hello-world/` for Episode 4 (Hello World).
+
+**Move to episode folder:**
+
+Once you identify which episode the footage belongs to:
+```bash
+# Create episode folder structure
+mkdir -p public/footage/ep-04/camera public/footage/ep-04/screen
+
+# Move footage from staging
+mv ../seri-programming-fundamental/raw-footage/hello-world/camera/*.MOV \
+   public/footage/ep-04/camera/
+mv ../seri-programming-fundamental/raw-footage/hello-world/screencasts/*.mov \
+   public/footage/ep-04/screen/
+
+# Clean up empty staging folder
+rm -rf ../seri-programming-fundamental/raw-footage/hello-world
+```
+
+**Create symlinks for transcript processing:**
+
+```bash
+cd footage/programming-fundamentals
+
+# Camera footage
+ln -s "/Volumes/ENDY1TB/Video Production/remotion-projects/public/footage/ep-04/camera/DSC_8017.MOV" \
+   pf-04-camera.mov
+
+# Screen recording
+ln -s "/Volumes/ENDY1TB/Video Production/remotion-projects/public/footage/ep-04/screen/Screen Recording 2026-02-04 at 08.52.25.mov" \
+   pf-04-screen.mov
+```
+
+**Final folder structure:**
+
+| Location | Purpose |
+|----------|---------|
+| `public/footage/ep-XX/` | Actual video files for Remotion staticFile() |
+| `footage/programming-fundamentals/pf-XX-*.mov` | Symlinks for transcript processing scripts |
+
+**Naming conventions:**
+
+Symlinks in `footage/programming-fundamentals/`:
+- `{series}-{episode}-{type}[-{number}].{ext}`
 - series: `pf` for Programming Fundamentals
 - episode: `01`, `02`, etc.
 - type: `camera` or `screen`
 - number: optional, for multiple recordings of same type
+
+Examples:
+- `pf-01-camera.mov` (single camera take)
+- `pf-02-camera-1.mov`, `pf-02-camera-2.mov` (multiple camera takes)
+- `pf-02-screen-1.mov`, `pf-02-screen-2.mov` (multiple screen sessions)
 
 ### 4. Post-Production with AI Assistant
 
