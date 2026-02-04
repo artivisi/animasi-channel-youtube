@@ -21,7 +21,7 @@ set -e
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 CONFIG_DIR="$PROJECT_DIR/scripts/episode-config"
 VIDEO_DIR="$PROJECT_DIR/public/footage"
-OUTPUT_DIR="/Volumes/ENDY1TB/Video Production/seri-programming-fundamental/rendered"
+OUTPUT_DIR="$PROJECT_DIR/rendered"
 
 cd "$PROJECT_DIR"
 

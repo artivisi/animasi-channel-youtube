@@ -20,7 +20,7 @@ import { spawn } from "child_process";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = path.join(__dirname, "..");
 const METADATA_DIR = path.join(PROJECT_ROOT, "scripts/youtube-metadata");
-const RENDERED_DIR = "/Volumes/ENDY1TB/Video Production/seri-programming-fundamental/rendered";
+const RENDERED_DIR = path.join(PROJECT_ROOT, "rendered");
 
 function runUpload(metadataPath, videoPath) {
   return new Promise((resolve, reject) => {
