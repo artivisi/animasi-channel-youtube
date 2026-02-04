@@ -10,7 +10,7 @@ import {
   random,
 } from "remotion";
 import logoSrc from "../../assets/logos/logo-artivisi.svg";
-import outroSfx from "../../assets/audio/outro-sfx.wav";
+import outroSfx from "../../assets/audio/outro-sfx-robotvoice-interference.wav";
 import outroStatic from "../../assets/audio/outro-static.wav";
 import transitionSfx from "../../assets/audio/transition-sfx.wav";
 
@@ -95,8 +95,8 @@ export const PFOutro: React.FC<PFOutroProps> = ({
       style={{ opacity: bgFade }}
       className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center overflow-hidden"
     >
-      {/* Main outro sound effect */}
-      <Audio src={outroSfx} volume={0.35} />
+      {/* Main outro sound effect - robotic voice */}
+      <Audio src={outroSfx} volume={0.8} />
 
       {/* Static noise - plays during glitch moments */}
       <Sequence from={20} durationInFrames={10}>
