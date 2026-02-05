@@ -51,6 +51,12 @@ import {
 } from "./tutorials/programming-fundamentals/components";
 import { VideoLowerThird, PipFrame } from "./components";
 import {
+  TechStackOverview,
+  BackendStack,
+  DevToolsStack,
+  ArchitectureDiagram,
+} from "./tutorials/vlog/components";
+import {
   PF01Composition,
   PF01_DURATION,
   PF02Composition,
@@ -100,6 +106,43 @@ export const RemotionRoot: React.FC = () => {
         id="Outro"
         component={Outro}
         durationInFrames={150}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      {/* Vlog: ArtiVisi Tech Stack 2026 */}
+      <Composition
+        id="Vlog-TechStackOverview"
+        component={TechStackOverview}
+        durationInFrames={450}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="Vlog-BackendStack"
+        component={BackendStack}
+        durationInFrames={750}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="Vlog-DevToolsStack"
+        component={DevToolsStack}
+        durationInFrames={600}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="Vlog-ArchitectureDiagram"
+        component={ArchitectureDiagram}
+        durationInFrames={600}
         fps={30}
         width={1920}
         height={1080}
