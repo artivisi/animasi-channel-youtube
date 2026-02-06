@@ -65,6 +65,8 @@ import {
   PF03_DURATION,
   PF04Composition,
   PF04_DURATION,
+  PF05Composition,
+  PF05_DURATION,
 } from "./tutorials/programming-fundamentals/compositions";
 
 export const RemotionRoot: React.FC = () => {
@@ -202,6 +204,15 @@ export const RemotionRoot: React.FC = () => {
         id="PF04-Full"
         component={PF04Composition}
         durationInFrames={PF04_DURATION}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="PF05-Full"
+        component={PF05Composition}
+        durationInFrames={PF05_DURATION}
         fps={30}
         width={1920}
         height={1080}
@@ -520,12 +531,37 @@ export const RemotionRoot: React.FC = () => {
 
       {/* Episode 5: Komentar & Struktur Kode */}
       <Composition
+        id="EP05-LowerThird"
+        component={VideoLowerThird}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          title: "Statement & Komentar",
+          subtitle: "Programming Fundamentals - Episode 5",
+        }}
+      />
+
+      <Composition
         id="EP05-CommentSyntaxComparison"
         component={CommentSyntaxComparison}
         durationInFrames={180}
         fps={30}
         width={1920}
         height={1080}
+      />
+
+      <Composition
+        id="EP05-Outro"
+        component={PFOutro}
+        durationInFrames={180}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          nextEpisodeTitle: "Variable & Tipe Data",
+        }}
       />
 
       {/* Episode 6: Variables */}
