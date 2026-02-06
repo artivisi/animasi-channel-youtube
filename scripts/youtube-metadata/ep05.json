@@ -1,7 +1,7 @@
 {
   "episodeId": "ep05",
-  "title": "Komentar & Struktur Kode | Programming Fundamentals #5",
-  "description": "Belajar menulis komentar dalam code dan memahami struktur kode yang rapi. Komentar membantu kita dan orang lain memahami code.\n\nProgramming Fundamentals Episode 5: Komentar & Struktur Kode\n\nDi episode ini kita belajar tentang komentar & struktur kode.\n\n⏱️ Timeline:\n00:00 Intro\n02:00 Apa Itu Komentar?\n05:00 Komentar di Python\n10:00 Komentar di JavaScript\n15:00 Komentar di Java\n20:00 Best Practices Komentar\n23:00 Struktur Kode yang Rapi\n26:00 Naming Conventions\n28:00 Challenge & Git\n29:00 Outro\n\n📚 Series: Programming Fundamentals - Belajar Python, Java, JavaScript\nEpisode ini adalah bagian dari seri Programming Fundamentals yang mengajarkan Python, Java, dan JavaScript secara bersamaan.\n\n🔗 Links:\n- GitHub: https://github.com/artivisi\n- Website: https://artivisi.com\n\n#programming #python #javascript #java #tutorial #pemula",
+  "title": "Statement & Komentar | Programming Fundamentals #5",
+  "description": "Belajar tentang statement dalam programming dan cara menulis komentar di Python, JavaScript, dan Java.\n\nProgramming Fundamentals Episode 5: Statement & Komentar\n\nDi episode ini kita belajar:\n- Apa itu statement dalam programming\n- Cara menulis komentar di Python (#, \"\"\")\n- Cara menulis komentar di JavaScript (// dan /* */)\n- Cara menulis komentar di Java (// dan /* */)\n- Best practices menulis komentar yang baik\n\n⏱️ Timeline:\n00:00 Intro\n00:15 Series Intro\n00:20 Penjelasan Statement\n05:00 Statement di Python\n10:00 Statement di JavaScript\n15:00 Statement di Java\n20:00 Komentar - Syntax Comparison\n23:00 Best Practices\n25:30 Outro\n\n📚 Series: Programming Fundamentals - Belajar Python, Java, JavaScript\nEpisode ini adalah bagian dari seri Programming Fundamentals yang mengajarkan Python, Java, dan JavaScript secara bersamaan.\n\n🔗 Links:\n- GitHub: https://github.com/artivisi\n- Website: https://artivisi.com\n\n#programming #python #javascript #java #tutorial #pemula #statement #komentar",
   "tags": [
     "programming",
     "coding",
@@ -13,10 +13,10 @@
     "java",
     "programming fundamentals",
     "artivisi",
+    "statement",
     "komentar",
     "comments",
-    "struktur kode",
-    "komentar & struktur kode"
+    "sintaks"
   ],
   "categoryId": "27",
   "language": "id",
