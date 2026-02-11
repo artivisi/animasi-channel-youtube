@@ -49,6 +49,8 @@ import {
   PF05_DURATION,
   PF06Composition,
   PF06_DURATION,
+  PF07Composition,
+  PF07_DURATION,
 } from "./tutorials/programming-fundamentals/compositions";
 
 export const RemotionRoot: React.FC = () => {
@@ -177,6 +179,15 @@ export const RemotionRoot: React.FC = () => {
         id="PF06-Full"
         component={PF06Composition}
         durationInFrames={PF06_DURATION}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+
+      <Composition
+        id="PF07-Full"
+        component={PF07Composition}
+        durationInFrames={PF07_DURATION}
         fps={30}
         width={1920}
         height={1080}

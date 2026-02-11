@@ -82,6 +82,7 @@ mkdir -p "$EMPTY_PUBLIC_DIR" "$SEGMENTS_DIR"
 # Frame counts for known compositions (avoid bundling just to get frame count)
 # Using case statement for POSIX compatibility (zsh doesn't support declare -A)
 case "$COMPOSITION_ID" in
+    "PF07-Full") TOTAL_FRAMES=43610 ;;
     "PF06-Full") TOTAL_FRAMES=45737 ;;
     "PF05-Full") TOTAL_FRAMES=47220 ;;
     "PF04-Full") TOTAL_FRAMES=34000 ;;

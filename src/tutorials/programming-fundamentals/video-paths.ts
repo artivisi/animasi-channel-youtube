@@ -34,6 +34,10 @@ const FOOTAGE_PATHS = {
   "pf-06-camera-3": "ep-06/camera/camera-3-fixed.mp4",
   "pf-06-screen-1": "ep-06/screen/screen-1-fixed.mp4",
   "pf-06-screen-2": "ep-06/screen/screen-2-fixed.mp4",
+
+  // Episode 7
+  "pf-07-camera-1": "ep-07/camera-1-fixed.mp4",
+  "pf-07-screen-1": "ep-07/screen-1-fixed.mp4",
 } as const;
 
 export type VideoKey = keyof typeof FOOTAGE_PATHS;
